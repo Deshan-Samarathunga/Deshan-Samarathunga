@@ -21,4 +21,6 @@
 <img align="left" alt="JavaScript" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/javascript.png" />
 <img align="left" alt="Bootstrap" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/bootstrap.png" />
 <img align="left" alt="Node.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/node%20js.png" />
+<img align="left" alt="C#" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/C%23.png" />
+<img align="left" alt="Java" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/java.png" />
 <img align="left" alt="GitHub" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
