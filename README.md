@@ -5,7 +5,7 @@
 <hr>
 
 ### Connect with me:
-<img align="left" alt="Spotify" width="80px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/spotify%20transparent.gif" />
+<a href="https://www.w3schools.com"><img align="left" alt="Spotify" width="80px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/spotify%20transparent.gif" /></a>
 <br />
 <br />
 <hr>
