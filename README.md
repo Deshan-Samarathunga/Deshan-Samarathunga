@@ -20,6 +20,9 @@
 <img align="left" alt="CSS3" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/css.png" />
 <img align="left" alt="JavaScript" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/javascript.png" />
 <img align="left" alt="Bootstrap" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/bootstrap.png" />
+<img align="left" alt="jQuery" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/jQuery.png" />
+<img align="left" alt="PHP" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/PHP.png" />
+<img align="left" alt="Laravel" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/laravel.png" />
 <img align="left" alt="Node.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/node%20js.png" />
 <img align="left" alt="C#" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/C%23.png" />
 <img align="left" alt="Java" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/java.png" />
