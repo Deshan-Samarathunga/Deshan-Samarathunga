@@ -14,11 +14,7 @@
 
 ### Languages and Tools I Use:
 
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Document</title>
-</head>
 <body>
     <div style="display: flex;flex-direction: row;">
         <img style="  margin-left: auto;
