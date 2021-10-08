@@ -2,11 +2,10 @@
 
 - 🌱 I’m currently learning everything 🤣
 - ⚡ Fun fact: I love watching politicians do dumb things😅
+<hr>
 
 ### Connect with me:
 <img align="left" alt="codeSTACKr | Instagram" width="80px" src="https://media.giphy.com/media/J5B1Y8QZnzXXbLQIBu/giphy.gif" />
-<br />
-<br />
 <br />
 <hr>
 
