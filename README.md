@@ -5,7 +5,7 @@
 <hr>
 
 ### Connect with me:
-<img align="left" alt="codeSTACKr | Instagram" width="80px" src="https://media.giphy.com/media/J5B1Y8QZnzXXbLQIBu/giphy.gif" />
+<img align="left" alt="Spotify" width="80px" src="https://drive.google.com/file/d/1TOhDhL47MxmT9VB2ZosceoSMsfoOQBA_/view?usp=sharing" />
 <br />
 <br />
 <hr>
