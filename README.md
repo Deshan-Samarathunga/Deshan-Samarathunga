@@ -4,7 +4,7 @@
 - ⚡ Fun fact: I love watching politicians do dumb things😅
 
 ### Connect with me:
-<img align="left" alt="codeSTACKr | Instagram" width="22px" src="https://pbs.twimg.com/media/Ewha8XaWgAQiPs2?format=png&name=4096x4096" />
+<img align="left" alt="codeSTACKr | Instagram" width="100px" src="https://pbs.twimg.com/media/Ewha8XaWgAQiPs2?format=png&name=4096x4096" />
 
 <br />
 
