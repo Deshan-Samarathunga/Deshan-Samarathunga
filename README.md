@@ -14,8 +14,13 @@
 
 ### Languages and Tools I Use:
 
-
-<div style="display: flex;flex-direction: row;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex;flex-direction: row;">
         <img style="  margin-left: auto;
         margin-right: auto;"  alt="Visual Studio Code" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/visual%20studio%20code.png" />
         <img style="  margin-left: auto;
@@ -32,7 +37,9 @@
         margin-right: auto;" alt="Node.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/node%20js.png" />
         <img style="  margin-left: auto;
         margin-right: auto;" alt="GitHub" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
-</div>
+    </div>
+</body>
+</html>
 
 <!-- <img align="left" alt="Visual Studio Code" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/visual%20studio%20code.png" />
 <img align="left" alt="Visual Studio" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/visual%20studio.png" />
