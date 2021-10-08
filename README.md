@@ -7,6 +7,7 @@
 ### Connect with me:
 <img align="left" alt="codeSTACKr | Instagram" width="80px" src="https://media.giphy.com/media/J5B1Y8QZnzXXbLQIBu/giphy.gif" />
 <br />
+<br />
 <hr>
 
 ### Languages and Tools I Use:
