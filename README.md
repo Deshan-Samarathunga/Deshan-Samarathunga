@@ -5,7 +5,7 @@
 <hr>
 
 ### Connect with me:
-<img align="left" alt="Spotify" width="80px" src="https://drive.google.com/file/d/1TOhDhL47MxmT9VB2ZosceoSMsfoOQBA_/view?usp=sharing.png" />
+<img align="left" alt="Spotify" width="80px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/spotify%20transparent.gif" />
 <br />
 <br />
 <hr>
