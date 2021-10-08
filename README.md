@@ -5,7 +5,7 @@
 <hr>
 
 ### Connect with me:
-<a href="https://open.spotify.com/user/31f2cubswonyx2rdyqwmhji5acbu?si=81ade8b717324338" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img align="left" alt="Spotify" width="80px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/spotify%20transparent.gif"/></a>
+<a href="https://open.spotify.com/user/31f2cubswonyx2rdyqwmhji5acbu?si=81ade8b717324338" target="_blank"><img align="left" alt="Spotify" width="80px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/spotify%20transparent.gif"/></a>
 <br />
 <br />
 <hr>
