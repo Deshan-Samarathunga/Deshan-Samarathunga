@@ -13,7 +13,7 @@
 <hr>
 
 ### Languages and Tools I Use:
-
+<a href="#">
 <img align="left" alt="Visual Studio Code" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/visual%20studio%20code.png" />
 <img align="left" alt="Visual Studio" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/visual%20studio.png" />
 <img align="left" alt="HTML5" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/html.png" />
@@ -27,3 +27,4 @@
 <img align="left" alt="C#" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/C%23.png" />
 <img align="left" alt="Java" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/java.png" />
 <img align="left" alt="GitHub" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
+</a>
