@@ -28,9 +28,5 @@
 <img align="left" alt="Java" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/java.png" />
 <img align="left" alt="GitHub" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
 </a>
+<br />
 <hr>
-&nbsp;<hr>
-&nbsp;&nbsp;<hr>
-&nbsp;&nbsp;&nbsp;<hr>
-&nbsp;&nbsp;&nbsp;&nbsp;<hr>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<hr>
