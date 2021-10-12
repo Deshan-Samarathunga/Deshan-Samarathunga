@@ -27,4 +27,5 @@
 <img align="left" alt="C#" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/C%23.png" />
 <img align="left" alt="Java" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/java.png" />
 <img align="left" alt="GitHub" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
+<img align="left" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
 </a>
