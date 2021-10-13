@@ -28,5 +28,5 @@
 <img align="left" alt="Java" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/java.png" />
 <img align="left" alt="GitHub" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
 <img align="left" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/Arch%20Linux.gif" />
-<img align="left" alt="Webstorm" width="30px" src="<img align="left" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/Arch%20Linux.gif" />" />
+<img align="left" alt="Webstorm" width="30px" src="<img align="left" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/Arch%20Linux.gif"/>
 </a>
