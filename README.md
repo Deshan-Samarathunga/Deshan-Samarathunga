@@ -16,6 +16,7 @@
 <a href="#" style="pointer-events: none">
 <img align="left" alt="Visual Studio Code" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/visual%20studio%20code.png" />
 <img align="left" alt="Visual Studio" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/visual%20studio.png" />
+<img align="left" alt="Webstorm" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/webstorm.png"/>
 <img align="left" alt="HTML5" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/html.png" />
 <img align="left" alt="CSS3" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/css.png" />
 <img align="left" alt="JavaScript" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/javascript.png" />
@@ -27,7 +28,6 @@
 <img align="left" alt="Java" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/java.png" />
 <img align="left" alt="GitHub" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/github.png" />
 <img align="left" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/Arch%20Linux.gif" />
-<img align="left" alt="Webstorm" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/webstorm.png"/>
 <br ><br >
 <img align="left" alt="MongoDB" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/mongodb.png" />
 <img align="left" alt="Express.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/express%20js.png" />
