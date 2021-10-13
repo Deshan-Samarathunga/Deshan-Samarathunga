@@ -30,6 +30,6 @@
 <img align="left" alt="Webstorm" alt="Arch Linux" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/webstorm.png"/>
 <img align="left" alt="MongoDB" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/mongodb.png" />
 <img align="left" alt="Express.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/express%20js.png" />
-<img align="left" alt="Angular.js" width="30px" src="" />
+<img align="left" alt="Angular.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/angular%20js.svg" />
 <img align="left" alt="Node.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/node%20js.png" />
 </a>
