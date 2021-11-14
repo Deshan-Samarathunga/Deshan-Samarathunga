@@ -33,4 +33,5 @@
 <img align="left" alt="Express.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/express%20js.png" />
 <img align="left" alt="Angular.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/angular%20js.svg" />
 <img align="left" alt="Node.js" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/node%20js.png" />
+<img align="left" alt="Android Studio" width="30px" src="https://github.com/Deshan-Samarathunga/README-ICONS/blob/main/android%20studio.gif" />
 </a>
