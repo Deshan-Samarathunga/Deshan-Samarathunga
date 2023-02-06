@@ -1,7 +1,5 @@
 ### Hi there, I'm Deshan 👋
 
-- 🌱 I’m currently learning everything 🤣
-- ⚡ Fun fact: I love watching politicians do dumb things😅
 <hr>
 
 ### Connect with me:
