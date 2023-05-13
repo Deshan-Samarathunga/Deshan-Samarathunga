@@ -1,1 +1,1 @@
-### Hi there, I'm Deshan 👋
+### Hi there, I'm Deshan
