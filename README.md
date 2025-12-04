@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <h3>🚀 Transforming ideas into code</h3>
+  <h3>Transforming ideas into code</h3>
 </div>
 
 ---
