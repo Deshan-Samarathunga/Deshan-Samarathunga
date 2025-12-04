@@ -29,13 +29,7 @@ Tech Stack
 
 ---
 
-### 📊 GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Deshan-Samarathunga&show_icons=true&theme=radical&hide_border=true" alt="Deshan's Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Deshan-Samarathunga&layout=compact&theme=radical&hide_border=true" alt="Top Languages" />
-</p>
-
+GitHub Stats
 <p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=Deshan-Samarathunga&theme=radical&hide_border=true" alt="Streak Stats" />
 </p>
