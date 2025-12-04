@@ -1,12 +1,3 @@
-<div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=20C20E&center=true&vCenter=true&width=435&lines=Hi+there!+I'm+Deshan.;Full+Stack+Developer.;Building+Cool+Stuff." alt="Typing SVG" />
-</div>
-
-<div align="center">
-  <h3>Transforming ideas into code</h3>
-</div>
-
----
 
 ### About Me
 
