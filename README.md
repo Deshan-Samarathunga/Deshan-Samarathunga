@@ -33,7 +33,7 @@ I'm a developer passionate about building scalable web applications and intuitiv
 
 | Project | Description | Tech |
 | :--- | :--- | :--- |
-| **kithul-flow-ops** | Operational management system with Admin UI. | `TypeScript` `React` |
+| **kithul-flow-ops** | Operational management system. | `TypeScript` `React` |
 | **SportsGear-Pro** | E-commerce platform for sports equipment. | `JavaScript` `Web` |
 | **Snappix** | Social media platform for photographers to share their work. | `Public` |
 
