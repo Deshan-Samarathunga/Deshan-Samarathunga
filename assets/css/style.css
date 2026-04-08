@@ -845,6 +845,19 @@ main {
         z-index: 20;
     }
 
+    .site-header .nav-toggle {
+        position: relative;
+        z-index: 21;
+    }
+
+    .js-enabled .nav-backdrop {
+        top: 94px;
+    }
+
+    .js-enabled .nav-drawer {
+        top: 94px;
+    }
+
     .js-enabled .site-nav {
         display: none;
     }
