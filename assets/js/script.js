@@ -4,12 +4,12 @@ const navToggle = document.querySelector(".nav-toggle");
 const navDrawer = document.getElementById("navDrawer");
 const navBackdrop = document.querySelector(".nav-backdrop");
 const yearEl = document.getElementById("year");
-const brandMark = document.querySelector(".brand-mark");
 const drawerLinks = [...document.querySelectorAll(".drawer-nav a")];
 const navLinks = [...document.querySelectorAll(".site-nav a, .drawer-nav a")];
 const revealTargets = [...document.querySelectorAll(".reveal")];
 const projectCards = [...document.querySelectorAll(".project-card")];
 const customCursor = document.querySelector(".custom-cursor");
+const faviconDynamicLink = document.getElementById("favicon-dynamic");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileNavQuery = window.matchMedia("(max-width: 899px)");
 const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -21,9 +21,97 @@ if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
 }
 
-if (brandMark) {
-    brandMark.addEventListener("click", event => {
-        event.preventDefault();
+const faviconBaseHref = faviconDynamicLink?.getAttribute("href") ?? "/favicon.svg?v=1";
+const faviconBaseType = faviconDynamicLink?.getAttribute("type") ?? "image/svg+xml";
+const faviconFrames = faviconDynamicLink
+    ? [
+        {
+            href: "/assets/favicon/ds-frame-1.png?v=1",
+            delay: 900,
+            type: "image/png"
+        },
+        {
+            href: "/assets/favicon/ds-frame-2.png?v=1",
+            delay: 90,
+            type: "image/png"
+        },
+        {
+            href: "/assets/favicon/ds-frame-3.png?v=1",
+            delay: 90,
+            type: "image/png"
+        },
+        {
+            href: "/assets/favicon/ds-frame-4.png?v=1",
+            delay: 120,
+            type: "image/png"
+        }
+    ]
+    : [];
+
+let faviconTimer = 0;
+let faviconFrameIndex = 0;
+
+const clearFaviconTimer = () => {
+    if (faviconTimer) {
+        window.clearTimeout(faviconTimer);
+        faviconTimer = 0;
+    }
+};
+
+const setFaviconHref = (href, type = faviconBaseType) => {
+    if (!faviconDynamicLink) {
+        return;
+    }
+
+    faviconDynamicLink.setAttribute("href", href);
+    faviconDynamicLink.setAttribute("type", type);
+};
+
+const restoreBaseFavicon = () => {
+    clearFaviconTimer();
+    setFaviconHref(faviconBaseHref, faviconBaseType);
+};
+
+const shouldAnimateFavicon = () => Boolean(
+    faviconDynamicLink
+    && faviconFrames.length > 0
+    && !prefersReducedMotion.matches
+    && !document.hidden
+);
+
+const queueFaviconFrame = () => {
+    if (!shouldAnimateFavicon()) {
+        restoreBaseFavicon();
+        return;
+    }
+
+    const frame = faviconFrames[faviconFrameIndex];
+    setFaviconHref(frame.href, frame.type);
+
+    faviconTimer = window.setTimeout(() => {
+        faviconFrameIndex = (faviconFrameIndex + 1) % faviconFrames.length;
+        queueFaviconFrame();
+    }, frame.delay);
+};
+
+const syncFaviconAnimation = () => {
+    clearFaviconTimer();
+    faviconFrameIndex = 0;
+
+    if (!shouldAnimateFavicon()) {
+        restoreBaseFavicon();
+        return;
+    }
+
+    queueFaviconFrame();
+};
+
+syncFaviconAnimation();
+
+if (faviconFrames.length > 0) {
+    faviconFrames.forEach(frame => {
+        const image = new Image();
+        image.src = frame.href;
     });
 }
 
@@ -129,6 +217,14 @@ if (customCursor) {
     }
 }
 
+document.addEventListener("visibilitychange", syncFaviconAnimation);
+
+if (typeof prefersReducedMotion.addEventListener === "function") {
+    prefersReducedMotion.addEventListener("change", syncFaviconAnimation);
+} else {
+    prefersReducedMotion.addListener(syncFaviconAnimation);
+}
+
 const setDrawerState = open => {
     if (!navToggle || !navDrawer || !navBackdrop) {
         return;
@@ -169,12 +265,6 @@ if (navToggle && navDrawer && navBackdrop) {
     navBackdrop.addEventListener("click", () => {
         setDrawerState(false);
         navToggle.focus();
-    });
-
-    drawerLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            setDrawerState(false);
-        });
     });
 
     document.addEventListener("keydown", event => {
@@ -221,12 +311,18 @@ const canAnimate = "IntersectionObserver" in window && !prefersReducedMotion.mat
 const getReferenceY = () => {
     const header = document.querySelector(".site-header");
     const headerBottom = header ? Math.max(header.getBoundingClientRect().bottom, 0) : 0;
-    const topSafeZone = headerBottom + 28;
-    return Math.min(window.innerHeight * 0.35, topSafeZone);
+    return Math.max(headerBottom + 28, window.innerHeight * 0.35);
 };
 
 const updateActiveSection = () => {
     if (observedSections.length === 0) {
+        return;
+    }
+
+    const lastSection = observedSections[observedSections.length - 1];
+    const distanceFromBottom = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+    if (lastSection && distanceFromBottom <= 32) {
+        syncActiveNav(lastSection.id);
         return;
     }
 
@@ -260,6 +356,67 @@ const requestActiveSectionUpdate = () => {
         isTicking = false;
     });
 };
+
+const hashLinks = [...document.querySelectorAll("a[href^='#']")];
+
+const scrollToHashTarget = hash => {
+    const targetId = hash.slice(1).trim();
+    if (!targetId) {
+        return false;
+    }
+
+    const target = document.getElementById(targetId);
+    if (!target) {
+        return false;
+    }
+
+    const behavior = prefersReducedMotion.matches ? "auto" : "smooth";
+    target.scrollIntoView({
+        behavior,
+        block: "start"
+    });
+
+    if (location.hash !== hash) {
+        if (typeof history.pushState === "function") {
+            history.pushState(null, "", hash);
+        } else {
+            location.hash = hash;
+        }
+    }
+
+    window.setTimeout(requestActiveSectionUpdate, prefersReducedMotion.matches ? 0 : 220);
+    return true;
+};
+
+hashLinks.forEach(link => {
+    link.addEventListener("click", event => {
+        const hash = link.getAttribute("href");
+        if (!hash || hash === "#") {
+            return;
+        }
+
+        const isDrawerLink = Boolean(link.closest(".drawer-nav"));
+        if (isDrawerLink) {
+            const targetId = hash.slice(1).trim();
+            if (!targetId || !document.getElementById(targetId)) {
+                return;
+            }
+
+            event.preventDefault();
+            setDrawerState(false);
+            window.setTimeout(() => {
+                scrollToHashTarget(hash);
+            }, 60);
+            return;
+        }
+
+        if (!scrollToHashTarget(hash)) {
+            return;
+        }
+
+        event.preventDefault();
+    });
+});
 
 if (canAnimate) {
     root.classList.add("motion-safe");
