@@ -839,6 +839,12 @@ main {
 }
 
 @media (max-width: 899px) {
+    .site-header {
+        position: sticky;
+        top: 10px;
+        z-index: 20;
+    }
+
     .js-enabled .site-nav {
         display: none;
     }
