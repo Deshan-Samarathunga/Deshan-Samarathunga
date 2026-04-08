@@ -8,24 +8,18 @@
         content="Deshan Samarathunga is a final-year IT student building bold websites, WordPress experiences, and custom business systems including ERP and POS solutions."
     >
     <title>Deshan Samarathunga | Developer Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap"
-        rel="stylesheet"
-    >
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="page-shell">
         <header class="site-header">
-            <a class="brand-mark" href="#top" aria-label="Go to top">DS</a>
+            <a class="brand-mark" href="#top" aria-label="Go to top" data-cursor="link">DS</a>
 
             <nav class="site-nav" aria-label="Primary">
-                <a href="#services">Services</a>
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+                <a href="#services" data-cursor="link">Services</a>
+                <a href="#projects" data-cursor="link">Projects</a>
+                <a href="#about" data-cursor="link">About</a>
+                <a href="#contact" data-cursor="link">Contact</a>
             </nav>
 
             <button
@@ -34,6 +28,7 @@
                 aria-expanded="false"
                 aria-controls="navDrawer"
                 aria-label="Open menu"
+                data-cursor="button"
             >
                 <span class="nav-toggle-text">Menu</span>
                 <span class="nav-toggle-box" aria-hidden="true">
@@ -50,12 +45,12 @@
             <div class="nav-drawer-panel">
                 <p class="drawer-kicker">Move through the portfolio</p>
                 <nav class="drawer-nav" aria-label="Mobile primary">
-                    <a href="#services">Services</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#services" data-cursor="link">Services</a>
+                    <a href="#projects" data-cursor="link">Projects</a>
+                    <a href="#about" data-cursor="link">About</a>
+                    <a href="#contact" data-cursor="link">Contact</a>
                 </nav>
-                <a class="button button-primary drawer-cta" href="mailto:your.email@example.com?subject=Project%20Inquiry">
+                <a class="button button-primary drawer-cta" href="mailto:your.email@example.com?subject=Project%20Inquiry" data-cursor="button">
                     Start a Project
                 </a>
             </div>
@@ -76,10 +71,10 @@
                         sharp usability, and systems that make daily work easier.
                     </p>
                     <div class="hero-actions">
-                        <a class="button button-primary" href="mailto:your.email@example.com?subject=Project%20Inquiry">
+                        <a class="button button-primary" href="mailto:your.email@example.com?subject=Project%20Inquiry" data-cursor="button">
                             Email Me
                         </a>
-                        <a class="button button-secondary" href="#projects">
+                        <a class="button button-secondary" href="#projects" data-cursor="button">
                             Explore Projects
                         </a>
                     </div>
@@ -125,7 +120,7 @@
                 </div>
 
                 <div class="card-grid services-grid">
-                    <article class="brutal-card service-card reveal">
+                    <article class="brutal-card service-card reveal" data-cursor="card">
                         <span class="service-index">01</span>
                         <h3>Web Development</h3>
                         <p>
@@ -133,7 +128,7 @@
                             feel modern to use, and guide visitors toward action.
                         </p>
                     </article>
-                    <article class="brutal-card service-card reveal">
+                    <article class="brutal-card service-card reveal" data-cursor="card">
                         <span class="service-index">02</span>
                         <h3>WordPress Websites</h3>
                         <p>
@@ -141,7 +136,7 @@
                             flexible content updates without losing polish.
                         </p>
                     </article>
-                    <article class="brutal-card service-card reveal">
+                    <article class="brutal-card service-card reveal" data-cursor="card">
                         <span class="service-index">03</span>
                         <h3>Custom Business Sites</h3>
                         <p>
@@ -149,7 +144,7 @@
                             that need something stronger than a generic template.
                         </p>
                     </article>
-                    <article class="brutal-card service-card reveal">
+                    <article class="brutal-card service-card reveal" data-cursor="card">
                         <span class="service-index">04</span>
                         <h3>ERP Systems</h3>
                         <p>
@@ -157,7 +152,7 @@
                             work, and make business data easier to track and act on.
                         </p>
                     </article>
-                    <article class="brutal-card service-card reveal">
+                    <article class="brutal-card service-card reveal" data-cursor="card">
                         <span class="service-index">05</span>
                         <h3>POS Systems</h3>
                         <p>
@@ -180,7 +175,7 @@
 
                 <div class="card-grid project-grid">
                     <details class="brutal-card project-card reveal" open>
-                        <summary>
+                        <summary data-cursor="card">
                             <div class="project-topline">
                                 <span class="project-tag">ERP</span>
                                 <span class="project-role">Full-stack developer</span>
@@ -213,7 +208,7 @@
                     </details>
 
                     <details class="brutal-card project-card reveal">
-                        <summary>
+                        <summary data-cursor="card">
                             <div class="project-topline">
                                 <span class="project-tag project-tag-alt">IoT Research</span>
                                 <span class="project-role">System designer</span>
@@ -246,7 +241,7 @@
                     </details>
 
                     <details class="brutal-card project-card reveal">
-                        <summary>
+                        <summary data-cursor="card">
                             <div class="project-topline">
                                 <span class="project-tag project-tag-blue">Creative Web</span>
                                 <span class="project-role">Front-end developer</span>
@@ -273,7 +268,7 @@
                                 <li>Stack: Three.js, JavaScript, responsive UI patterns</li>
                             </ul>
                             <div class="project-links">
-                                <a href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer">
+                                <a href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer" data-cursor="link">
                                     GitHub Profile
                                 </a>
                             </div>
@@ -360,7 +355,7 @@
                             Tell me what you want to build, what kind of business you run,
                             and what outcome you need. I can help shape the next step.
                         </p>
-                        <a class="button button-primary" href="mailto:your.email@example.com?subject=Freelance%20Project%20Inquiry">
+                        <a class="button button-primary" href="mailto:your.email@example.com?subject=Freelance%20Project%20Inquiry" data-cursor="button">
                             your.email@example.com
                         </a>
                         <p class="inline-note">
@@ -372,7 +367,7 @@
                         <p class="contact-kicker">Profiles</p>
                         <h3>Find me online</h3>
                         <div class="contact-links">
-                            <a href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer">
+                            <a href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer" data-cursor="link">
                                 GitHub
                             </a>
                             <span class="placeholder-pill">Add your LinkedIn URL</span>
@@ -387,6 +382,18 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <div class="custom-cursor" id="cursor-dot" aria-hidden="true">
+        <svg class="custom-cursor-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path
+                d="M3 3L10 28L15 19L24 30L30 24L19 15L28 10Z"
+                fill="white"
+                stroke="black"
+                stroke-width="3"
+                stroke-linejoin="miter"
+            ></path>
+        </svg>
+    </div>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

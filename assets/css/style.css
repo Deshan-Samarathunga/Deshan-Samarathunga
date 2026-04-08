@@ -1,3 +1,27 @@
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("../fonts/space-grotesk/static/SpaceGrotesk-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("../fonts/space-grotesk/static/SpaceGrotesk-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("../fonts/space-grotesk/static/SpaceGrotesk-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --paper: #f6f1e8;
     --ink: #111111;
@@ -15,6 +39,8 @@
     --section-gap: clamp(24px, 4vw, 40px);
     --section-padding: clamp(18px, 3vw, 30px);
     --surface-padding: clamp(18px, 2vw, 22px);
+    --font-body: "Space Grotesk", Arial, sans-serif;
+    --font-display: "Space Grotesk", Arial, sans-serif;
 }
 
 *,
@@ -31,7 +57,7 @@ body {
     margin: 0;
     min-width: 320px;
     overflow-x: hidden;
-    font-family: "Space Grotesk", Arial, sans-serif;
+    font-family: var(--font-body);
     color: var(--ink);
     background:
         linear-gradient(90deg, rgba(17, 17, 17, 0.06) 1px, transparent 1px),
@@ -42,6 +68,45 @@ body {
 
 body.nav-open {
     overflow: hidden;
+}
+
+.custom-cursor {
+    --cursor-x: -100px;
+    --cursor-y: -100px;
+    --cursor-scale: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: transform, opacity;
+    transform-origin: 0 0;
+    transform:
+        translate3d(calc(var(--cursor-x) - 3px), calc(var(--cursor-y) - 3px), 0)
+        scale(var(--cursor-scale));
+    transition:
+        opacity 160ms ease,
+        transform 70ms ease;
+}
+
+.custom-cursor-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(4px 4px 0 var(--ink));
+}
+
+.custom-cursor.is-visible {
+    opacity: 1;
+}
+
+.custom-cursor.is-pressed {
+    --cursor-scale: 0.96;
 }
 
 img {
@@ -130,7 +195,8 @@ section[id] {
     height: 58px;
     border: var(--border);
     background: var(--acid);
-    font-family: "Archivo Black", Arial, sans-serif;
+    font-family: var(--font-display);
+    font-weight: 700;
     font-size: 1.35rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -308,7 +374,8 @@ main {
 .hero h1,
 .section-heading h2,
 .brutal-card h3 {
-    font-family: "Archivo Black", Arial, sans-serif;
+    font-family: var(--font-display);
+    font-weight: 700;
     line-height: 0.94;
 }
 
@@ -647,6 +714,18 @@ main {
     transform: translateY(0);
 }
 
+@media (hover: hover) and (pointer: fine) {
+    html.custom-cursor-enabled,
+    html.custom-cursor-enabled body,
+    html.custom-cursor-enabled body * {
+        cursor: none !important;
+    }
+
+    html.custom-cursor-enabled .custom-cursor {
+        display: block;
+    }
+}
+
 @media (max-width: 899px) {
     .js-enabled .site-nav {
         display: none;
@@ -838,5 +917,10 @@ main {
 
     .hero-stat-grid {
         scroll-snap-type: none;
+    }
+
+    .custom-cursor,
+    .custom-cursor-icon {
+        transition-duration: 0.01ms !important;
     }
 }

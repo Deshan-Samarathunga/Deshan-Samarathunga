@@ -8,13 +8,99 @@ const drawerLinks = [...document.querySelectorAll(".drawer-nav a")];
 const navLinks = [...document.querySelectorAll(".site-nav a, .drawer-nav a")];
 const revealTargets = [...document.querySelectorAll(".reveal")];
 const projectCards = [...document.querySelectorAll(".project-card")];
+const customCursor = document.querySelector(".custom-cursor");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileNavQuery = window.matchMedia("(max-width: 899px)");
+const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
 root.classList.add("js-enabled");
 
 if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
+}
+
+const positionCursor = (x, y) => {
+    if (!customCursor) {
+        return;
+    }
+
+    customCursor.style.setProperty("--cursor-x", `${x}px`);
+    customCursor.style.setProperty("--cursor-y", `${y}px`);
+};
+
+const canUseCustomCursor = () => Boolean(customCursor && finePointerQuery.matches && !mobileNavQuery.matches);
+
+const hideCustomCursor = () => {
+    if (!customCursor) {
+        return;
+    }
+
+    customCursor.classList.remove("is-visible", "is-pressed");
+};
+
+const updateCursorAvailability = () => {
+    const enabled = canUseCustomCursor();
+    root.classList.toggle("custom-cursor-enabled", enabled);
+
+    if (!enabled) {
+        hideCustomCursor();
+    }
+};
+
+updateCursorAvailability();
+
+if (customCursor) {
+    document.addEventListener("pointermove", event => {
+        if (!canUseCustomCursor() || event.pointerType !== "mouse") {
+            return;
+        }
+
+        customCursor.classList.add("is-visible");
+        positionCursor(event.clientX, event.clientY);
+    });
+
+    document.addEventListener("pointerdown", event => {
+        if (!canUseCustomCursor() || event.pointerType !== "mouse") {
+            return;
+        }
+
+        customCursor.classList.add("is-pressed");
+    });
+
+    window.addEventListener("pointerup", () => {
+        if (!customCursor) {
+            return;
+        }
+
+        customCursor.classList.remove("is-pressed");
+    });
+
+    document.addEventListener("pointerout", event => {
+        if (!canUseCustomCursor() || event.relatedTarget) {
+            return;
+        }
+
+        hideCustomCursor();
+    });
+
+    window.addEventListener("blur", hideCustomCursor);
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            hideCustomCursor();
+        }
+    });
+
+    const handleCursorEnvironmentChange = () => {
+        updateCursorAvailability();
+    };
+
+    if (typeof finePointerQuery.addEventListener === "function") {
+        finePointerQuery.addEventListener("change", handleCursorEnvironmentChange);
+        prefersReducedMotion.addEventListener("change", handleCursorEnvironmentChange);
+    } else {
+        finePointerQuery.addListener(handleCursorEnvironmentChange);
+        prefersReducedMotion.addListener(handleCursorEnvironmentChange);
+    }
 }
 
 const setDrawerState = open => {
@@ -76,6 +162,8 @@ if (navToggle && navDrawer && navBackdrop) {
         if (!event.matches) {
             setDrawerState(false);
         }
+
+        updateCursorAvailability();
     };
 
     if (typeof mobileNavQuery.addEventListener === "function") {
