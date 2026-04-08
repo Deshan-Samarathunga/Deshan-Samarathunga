@@ -109,6 +109,58 @@ body.nav-open {
     --cursor-scale: 0.96;
 }
 
+.icon-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    color: currentColor;
+}
+
+.icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    flex: 0 0 auto;
+    border: var(--thin-border);
+    background: var(--white);
+    box-shadow: 4px 4px 0 var(--ink);
+    color: var(--ink);
+}
+
+.icon-badge-acid {
+    background: var(--acid);
+    color: var(--ink);
+}
+
+.icon-badge-blue {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.icon-badge-tomato {
+    background: var(--tomato);
+    color: var(--white);
+}
+
+.link-with-icon {
+    gap: 12px;
+}
+
+.button-icon {
+    width: 2.15rem;
+    height: 2.15rem;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -223,6 +275,11 @@ section[id] {
     border: var(--thin-border);
     background: var(--white);
     font-weight: 700;
+}
+
+.contact-links a,
+.project-links a {
+    justify-content: flex-start;
 }
 
 .site-nav a.is-active,
@@ -406,6 +463,7 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 12px;
     min-height: 58px;
     padding: 15px 18px;
     border: var(--border);
@@ -434,6 +492,14 @@ main {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.project-links {
+    align-items: flex-start;
+}
+
+.link-with-icon > span:last-child {
+    line-height: 1.2;
 }
 
 .hero-badges span,
