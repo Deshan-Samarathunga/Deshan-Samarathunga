@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio - Windows 98</title>
+    <style>
+        /* --- Windows 98 Color Palette & Typography --- */
+        @font-face {
+            font-family: 'Pixelated MS Sans Serif';
+            src: url('https://db.onlinewebfonts.com/t/0bcbf08d2d53bf5db8cc1a967dc8a4ea.woff2') format('woff2');
+        }
+
+        :root {
+            --win-bg: #008080; /* Desktop Teal */
+            --dialog-bg: #c0c0c0; /* Classic Gray */
+            --dialog-border-light: #ffffff;
+            --dialog-border-dark: #808080;
+            --dialog-border-darker: #000000;
+            --title-blue: #000080;
+            --title-text: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--win-bg);
+            font-family: 'Pixelated MS Sans Serif', 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            color: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            user-select: none; /* Prevent text selection while dragging */
+        }
+
+        /* --- Desktop Area --- */
+        .desktop {
+            flex-grow: 1;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .desktop-icon {
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        .desktop-icon img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 4px;
+            image-rendering: pixelated;
+        }
+
+        .desktop-icon span {
+            background-color: transparent;
+            padding: 2px;
+        }
+
+        .desktop-icon:active span, .desktop-icon.selected span {
+            background-color: #000080;
+            border: 1px dotted white;
+        }
+
+        /* --- Window Styles --- */
+        .window {
+            background: var(--dialog-bg);
+            border-top: 2px solid var(--dialog-border-light);
+            border-left: 2px solid var(--dialog-border-light);
+            border-right: 2px solid var(--dialog-border-darker);
+            border-bottom: 2px solid var(--dialog-border-darker);
+            box-shadow: inset -1px -1px var(--dialog-border-dark), inset 1px 1px #dfdfdf;
+            width: 100%;
+            max-width: 600px;
+            position: absolute;
+            top: 50px;
+            left: 250px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        .title-bar {
+            background: var(--title-blue);
+            color: var(--title-text);
+            padding: 3px 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 2px;
+            cursor: default;
+        }
+
+        .title-bar.inactive {
+            background: #808080;
+        }
+
+        .title-bar-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .title-bar button {
+            background: var(--dialog-bg);
+            border-top: 1px solid var(--dialog-border-light);
+            border-left: 1px solid var(--dialog-border-light);
+            border-right: 1px solid var(--dialog-border-darker);
+            border-bottom: 1px solid var(--dialog-border-darker);
+            box-shadow: inset -1px -1px var(--dialog-border-dark);
+            width: 16px;
+            height: 14px;
+            font-size: 9px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .title-bar button:active {
+            border-top: 1px solid var(--dialog-border-darker);
+            border-left: 1px solid var(--dialog-border-darker);
+            border-right: 1px solid var(--dialog-border-light);
+            border-bottom: 1px solid var(--dialog-border-light);
+            box-shadow: none;
+        }
+
+        .window-body {
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 60vh;
+            background: var(--dialog-bg);
+            user-select: text; /* Allow text selection inside the window */
+        }
+
+        /* --- Content Typography & Elements --- */
+        h1, h2, h3 { margin-top: 0; font-family: 'Pixelated MS Sans Serif', Arial, sans-serif; }
+        h1 { font-size: 24px; margin-bottom: 5px; }
+        h2 { font-size: 14px; color: #333; margin-bottom: 15px; }
+        h3 { font-size: 14px; border-bottom: 1px solid var(--dialog-border-dark); padding-bottom: 2px; margin-top: 20px; }
+        p, li { line-height: 1.4; font-size: 12px; }
+        ul { padding-left: 20px; margin-bottom: 15px;}
+        
+        a { color: blue; text-decoration: underline; cursor: pointer; }
+        a:hover { color: #000080; }
+
+        .sunken-panel {
+            background: white;
+            border-top: 2px solid var(--dialog-border-dark);
+            border-left: 2px solid var(--dialog-border-dark);
+            border-right: 2px solid var(--dialog-border-light);
+            border-bottom: 2px solid var(--dialog-border-light);
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--dialog-bg);
+            border-top: 1px solid var(--dialog-border-light);
+            border-left: 1px solid var(--dialog-border-light);
+            border-right: 1px solid var(--dialog-border-dark);
+            border-bottom: 1px solid var(--dialog-border-dark);
+            padding: 2px 6px;
+            margin: 2px;
+            font-size: 11px;
+        }
+
+        /* --- Taskbar --- */
+        .taskbar {
+            background: var(--dialog-bg);
+            border-top: 2px solid var(--dialog-border-light);
+            height: 35px;
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            z-index: 100;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .start-btn {
+            background: var(--dialog-bg);
+            border-top: 2px solid var(--dialog-border-light);
+            border-left: 2px solid var(--dialog-border-light);
+            border-right: 2px solid var(--dialog-border-darker);
+            border-bottom: 2px solid var(--dialog-border-darker);
+            box-shadow: inset -1px -1px var(--dialog-border-dark);
+            padding: 4px 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            height: 25px;
+        }
+
+        .start-btn:active, .start-btn.active {
+            border-top: 2px solid var(--dialog-border-darker);
+            border-left: 2px solid var(--dialog-border-darker);
+            border-right: 2px solid var(--dialog-border-light);
+            border-bottom: 2px solid var(--dialog-border-light);
+            box-shadow: inset 1px 1px var(--dialog-border-dark);
+            padding: 5px 7px 3px 9px;
+        }
+
+        .windows-logo {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            image-rendering: pixelated;
+        }
+
+        .taskbar-divider {
+            border-left: 1px solid var(--dialog-border-dark);
+            border-right: 1px solid var(--dialog-border-light);
+            height: 25px;
+            margin: 0 10px;
+        }
+
+        .task-window {
+            background: var(--dialog-bg);
+            border-top: 2px solid var(--dialog-border-darker);
+            border-left: 2px solid var(--dialog-border-darker);
+            border-right: 2px solid var(--dialog-border-light);
+            border-bottom: 2px solid var(--dialog-border-light);
+            background-image: repeating-linear-gradient(45deg, #dfdfdf 25%, transparent 25%, transparent 75%, #dfdfdf 75%, #dfdfdf), repeating-linear-gradient(45deg, #dfdfdf 25%, #c0c0c0 25%, #c0c0c0 75%, #dfdfdf 75%, #dfdfdf);
+            background-position: 0 0, 2px 2px;
+            background-size: 4px 4px;
+            padding: 4px 10px;
+            font-weight: bold;
+            height: 25px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            min-width: 150px;
+            cursor: pointer;
+        }
+
+        .task-window img {
+            width: 14px;
+            height: 14px;
+            margin-right: 5px;
+        }
+
+        .tray {
+            margin-left: auto;
+            border-top: 2px solid var(--dialog-border-dark);
+            border-left: 2px solid var(--dialog-border-dark);
+            border-right: 2px solid var(--dialog-border-light);
+            border-bottom: 2px solid var(--dialog-border-light);
+            padding: 2px 8px;
+            height: 25px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        .clock {
+            font-size: 11px;
+        }
+
+        /* --- Start Menu --- */
+        .start-menu {
+            position: absolute;
+            bottom: 35px;
+            left: 0;
+            width: 200px;
+            background: var(--dialog-bg);
+            border-top: 2px solid var(--dialog-border-light);
+            border-left: 2px solid var(--dialog-border-light);
+            border-right: 2px solid var(--dialog-border-darker);
+            border-bottom: 2px solid var(--dialog-border-darker);
+            box-shadow: inset -1px -1px var(--dialog-border-dark);
+            display: none; /* Hidden by default */
+            flex-direction: row;
+            z-index: 1000;
+        }
+
+        .start-menu.show {
+            display: flex;
+        }
+
+        .start-sidebar {
+            width: 30px;
+            background: linear-gradient(to top, #000080, #1084d0);
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 5px;
+        }
+
+        .start-sidebar-text {
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            transform: rotate(-90deg);
+            transform-origin: left bottom;
+            white-space: nowrap;
+            margin-left: 25px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .start-items {
+            flex-grow: 1;
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .start-item {
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .start-item:hover {
+            background-color: #000080;
+            color: white;
+        }
+
+        .start-item img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .start-divider {
+            height: 1px;
+            background-color: var(--dialog-border-dark);
+            border-bottom: 1px solid var(--dialog-border-light);
+            margin: 4px 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="desktop" id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icon" onclick="selectIcon(this)">
+            <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="My Computer">
+            <span>My Computer</span>
+        </div>
+        <div class="desktop-icon" onclick="selectIcon(this)">
+            <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin">
+            <span>Recycle Bin</span>
+        </div>
+        <div class="desktop-icon" onclick="selectIcon(this)" ondblclick="openPortfolio()">
+            <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="My Documents">
+            <span>My Documents</span>
+        </div>
+        <div class="desktop-icon" onclick="selectIcon(this)">
+            <img src="https://win98icons.alexmeub.com/icons/png/msie1-2.png" alt="Internet Explorer">
+            <span>Internet</span>
+        </div>
+
+        <!-- The Main Portfolio Window -->
+        <div class="window" id="portfolioWindow">
+            <div class="title-bar" id="titleBar">
+                <div class="title-bar-text">
+                    <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" style="width: 12px; height: 12px; vertical-align: middle; margin-right: 4px;" alt="icon">
+                    C:\My Documents\Portfolio.exe
+                </div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize" onclick="toggleWindow()">_</button>
+                    <button aria-label="Maximize">☐</button>
+                    <button aria-label="Close" onclick="closeWindow()">X</button>
+                </div>
+            </div>
+            
+            <div class="window-body">
+                <h1>Deshan Samarathunga</h1>
+                <h2>Full-Stack Developer | IT Undergraduate</h2>
+                
+                <div class="sunken-panel">
+                    <p>Hi, I'm Deshan. I'm currently finishing up my degree and actively building full-stack applications. I enjoy tackling UI/UX challenges, optimizing performance, and exploring everything from 3D web rendering to backend infrastructure.</p>
+                </div>
+
+                <h3>Technical Skills</h3>
+                <div>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">Three.js</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Linux</span>
+                </div>
+
+                <h3>Featured Projects</h3>
+                <ul>
+                    <li><strong>Kithul Flow:</strong> A comprehensive ERP system built from the ground up, focusing on clean UI/UX and robust feature implementation.</li>
+                    <li><strong>Smart IoT-Enabled Monitoring System:</strong> A research-driven IoT project focused on optimizing environments for oyster mushroom cultivation.</li>
+                    <li><strong>Interactive 3D Portfolio:</strong> Experimental web portfolio utilizing Three.js for seamless, animated user experiences.</li>
+                </ul>
+
+                <h3>Links & Profiles</h3>
+                <ul>
+                    <li><strong>GitHub:</strong> <a href="#">github.com/Deshan-Samarathunga</a></li>
+                    <li><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/deshan</a></li>
+                    <li><strong>Email:</strong> <a href="mailto:contact@example.com">contact@example.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-sidebar">
+            <div class="start-sidebar-text">Windows 98</div>
+        </div>
+        <div class="start-items">
+            <div class="start-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-0.png" alt="Update">
+                <span>Windows Update</span>
+            </div>
+            <div class="start-divider"></div>
+            <div class="start-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/settings_gear-0.png" alt="Settings">
+                <span>Settings</span>
+            </div>
+            <div class="start-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/search_file-2.png" alt="Find">
+                <span>Find</span>
+            </div>
+            <div class="start-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/help_book_big-0.png" alt="Help">
+                <span>Help</span>
+            </div>
+            <div class="start-item">
+                <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="Run">
+                <span>Run...</span>
+            </div>
+            <div class="start-divider"></div>
+            <div class="start-item" onclick="toggleStartMenu()">
+                <img src="https://win98icons.alexmeub.com/icons/png/shut_down_normal-2.png" alt="Shut Down">
+                <span>Shut Down...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-btn" id="startBtn" onclick="toggleStartMenu()">
+            <img src="https://win98icons.alexmeub.com/icons/png/windows_slanted-1.png" class="windows-logo" alt="Windows Logo">
+            Start
+        </button>
+        <div class="taskbar-divider"></div>
+        <div class="task-window" id="taskbarWindow" onclick="toggleWindow()">
+            <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="icon">
+            Portfolio.exe
+        </div>
+        
+        <div class="tray">
+            <div class="clock" id="clock">12:00 PM</div>
+        </div>
+    </div>
+
+    <script>
+        // --- Clock Logic ---
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const strTime = hours + ':' + minutes + ' ' + ampm;
+            document.getElementById('clock').textContent = strTime;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // initial call
+
+        // --- Start Menu Logic ---
+        function toggleStartMenu() {
+            const menu = document.getElementById('startMenu');
+            const btn = document.getElementById('startBtn');
+            menu.classList.toggle('show');
+            btn.classList.toggle('active');
+        }
+
+        // Close start menu if clicked outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('startMenu');
+            const btn = document.getElementById('startBtn');
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.remove('show');
+                btn.classList.remove('active');
+            }
+        });
+
+        // --- Desktop Icons Logic ---
+        function selectIcon(element) {
+            // Deselect all
+            const icons = document.querySelectorAll('.desktop-icon');
+            icons.forEach(icon => icon.classList.remove('selected'));
+            // Select clicked
+            element.classList.add('selected');
+        }
+
+        document.getElementById('desktop').addEventListener('click', function(e) {
+            if (e.target === this) {
+                const icons = document.querySelectorAll('.desktop-icon');
+                icons.forEach(icon => icon.classList.remove('selected'));
+            }
+        });
+
+        // --- Window Dragging Logic ---
+        const windowEl = document.getElementById('portfolioWindow');
+        const titleBar = document.getElementById('titleBar');
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        titleBar.addEventListener('mousedown', (e) => {
+            // Prevent dragging if clicking a button
+            if (e.target.tagName.toLowerCase() === 'button') return;
+            
+            isDragging = true;
+            offsetX = e.clientX - windowEl.getBoundingClientRect().left;
+            offsetY = e.clientY - windowEl.getBoundingClientRect().top;
+            
+            // Bring to front
+            windowEl.style.zIndex = 10;
+            titleBar.classList.remove('inactive');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            // Calculate new position
+            let newX = e.clientX - offsetX;
+            let newY = e.clientY - offsetY;
+            
+            // Keep window within boundaries (rough estimate)
+            newY = Math.max(0, newY); // Don't go above top
+            
+            windowEl.style.left = `${newX}px`;
+            windowEl.style.top = `${newY}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // --- Window Minimize/Close Logic ---
+        function closeWindow() {
+            windowEl.style.display = 'none';
+            document.getElementById('taskbarWindow').style.display = 'none';
+        }
+
+        function toggleWindow() {
+            if (windowEl.style.display === 'none') {
+                windowEl.style.display = 'flex';
+                document.getElementById('taskbarWindow').style.boxShadow = "inset -1px -1px var(--dialog-border-dark), inset 1px 1px #dfdfdf";
+                document.getElementById('taskbarWindow').style.borderTop = "2px solid var(--dialog-border-darker)";
+            } else {
+                windowEl.style.display = 'none';
+                document.getElementById('taskbarWindow').style.boxShadow = "none";
+                document.getElementById('taskbarWindow').style.borderTop = "2px solid var(--dialog-border-light)";
+            }
+        }
+
+        function openPortfolio() {
+             windowEl.style.display = 'flex';
+             document.getElementById('taskbarWindow').style.display = 'flex';
+        }
+
+    </script>
+</body>
+</html>
