@@ -3,584 +3,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio - Windows 98</title>
-    <style>
-        /* --- Windows 98 Color Palette & Typography --- */
-        @font-face {
-            font-family: 'Pixelated MS Sans Serif';
-            src: url('https://db.onlinewebfonts.com/t/0bcbf08d2d53bf5db8cc1a967dc8a4ea.woff2') format('woff2');
-        }
-
-        :root {
-            --win-bg: #008080; /* Desktop Teal */
-            --dialog-bg: #c0c0c0; /* Classic Gray */
-            --dialog-border-light: #ffffff;
-            --dialog-border-dark: #808080;
-            --dialog-border-darker: #000000;
-            --title-blue: #000080;
-            --title-text: #ffffff;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--win-bg);
-            font-family: 'Pixelated MS Sans Serif', 'MS Sans Serif', Tahoma, Arial, sans-serif;
-            font-size: 12px;
-            color: black;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            user-select: none; /* Prevent text selection while dragging */
-        }
-
-        /* --- Desktop Area --- */
-        .desktop {
-            flex-grow: 1;
-            padding: 20px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .desktop-icon {
-            width: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-        }
-
-        .desktop-icon img {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 4px;
-            image-rendering: pixelated;
-        }
-
-        .desktop-icon span {
-            background-color: transparent;
-            padding: 2px;
-        }
-
-        .desktop-icon:active span, .desktop-icon.selected span {
-            background-color: #000080;
-            border: 1px dotted white;
-        }
-
-        /* --- Window Styles --- */
-        .window {
-            background: var(--dialog-bg);
-            border-top: 2px solid var(--dialog-border-light);
-            border-left: 2px solid var(--dialog-border-light);
-            border-right: 2px solid var(--dialog-border-darker);
-            border-bottom: 2px solid var(--dialog-border-darker);
-            box-shadow: inset -1px -1px var(--dialog-border-dark), inset 1px 1px #dfdfdf;
-            width: 100%;
-            max-width: 600px;
-            position: absolute;
-            top: 50px;
-            left: 250px;
-            display: flex;
-            flex-direction: column;
-            z-index: 10;
-        }
-
-        .title-bar {
-            background: var(--title-blue);
-            color: var(--title-text);
-            padding: 3px 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin: 2px;
-            cursor: default;
-        }
-
-        .title-bar.inactive {
-            background: #808080;
-        }
-
-        .title-bar-controls {
-            display: flex;
-            gap: 2px;
-        }
-
-        .title-bar button {
-            background: var(--dialog-bg);
-            border-top: 1px solid var(--dialog-border-light);
-            border-left: 1px solid var(--dialog-border-light);
-            border-right: 1px solid var(--dialog-border-darker);
-            border-bottom: 1px solid var(--dialog-border-darker);
-            box-shadow: inset -1px -1px var(--dialog-border-dark);
-            width: 16px;
-            height: 14px;
-            font-size: 9px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .title-bar button:active {
-            border-top: 1px solid var(--dialog-border-darker);
-            border-left: 1px solid var(--dialog-border-darker);
-            border-right: 1px solid var(--dialog-border-light);
-            border-bottom: 1px solid var(--dialog-border-light);
-            box-shadow: none;
-        }
-
-        .window-body {
-            padding: 15px;
-            overflow-y: auto;
-            max-height: 60vh;
-            background: var(--dialog-bg);
-            user-select: text; /* Allow text selection inside the window */
-        }
-
-        /* --- Content Typography & Elements --- */
-        h1, h2, h3 { margin-top: 0; font-family: 'Pixelated MS Sans Serif', Arial, sans-serif; }
-        h1 { font-size: 24px; margin-bottom: 5px; }
-        h2 { font-size: 14px; color: #333; margin-bottom: 15px; }
-        h3 { font-size: 14px; border-bottom: 1px solid var(--dialog-border-dark); padding-bottom: 2px; margin-top: 20px; }
-        p, li { line-height: 1.4; font-size: 12px; }
-        ul { padding-left: 20px; margin-bottom: 15px;}
-        
-        a { color: blue; text-decoration: underline; cursor: pointer; }
-        a:hover { color: #000080; }
-
-        .sunken-panel {
-            background: white;
-            border-top: 2px solid var(--dialog-border-dark);
-            border-left: 2px solid var(--dialog-border-dark);
-            border-right: 2px solid var(--dialog-border-light);
-            border-bottom: 2px solid var(--dialog-border-light);
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            background: var(--dialog-bg);
-            border-top: 1px solid var(--dialog-border-light);
-            border-left: 1px solid var(--dialog-border-light);
-            border-right: 1px solid var(--dialog-border-dark);
-            border-bottom: 1px solid var(--dialog-border-dark);
-            padding: 2px 6px;
-            margin: 2px;
-            font-size: 11px;
-        }
-
-        /* --- Taskbar --- */
-        .taskbar {
-            background: var(--dialog-bg);
-            border-top: 2px solid var(--dialog-border-light);
-            height: 35px;
-            display: flex;
-            align-items: center;
-            padding: 0 5px;
-            z-index: 100;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        .start-btn {
-            background: var(--dialog-bg);
-            border-top: 2px solid var(--dialog-border-light);
-            border-left: 2px solid var(--dialog-border-light);
-            border-right: 2px solid var(--dialog-border-darker);
-            border-bottom: 2px solid var(--dialog-border-darker);
-            box-shadow: inset -1px -1px var(--dialog-border-dark);
-            padding: 4px 8px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            height: 25px;
-        }
-
-        .start-btn:active, .start-btn.active {
-            border-top: 2px solid var(--dialog-border-darker);
-            border-left: 2px solid var(--dialog-border-darker);
-            border-right: 2px solid var(--dialog-border-light);
-            border-bottom: 2px solid var(--dialog-border-light);
-            box-shadow: inset 1px 1px var(--dialog-border-dark);
-            padding: 5px 7px 3px 9px;
-        }
-
-        .windows-logo {
-            width: 16px;
-            height: 16px;
-            margin-right: 5px;
-            image-rendering: pixelated;
-        }
-
-        .taskbar-divider {
-            border-left: 1px solid var(--dialog-border-dark);
-            border-right: 1px solid var(--dialog-border-light);
-            height: 25px;
-            margin: 0 10px;
-        }
-
-        .task-window {
-            background: var(--dialog-bg);
-            border-top: 2px solid var(--dialog-border-darker);
-            border-left: 2px solid var(--dialog-border-darker);
-            border-right: 2px solid var(--dialog-border-light);
-            border-bottom: 2px solid var(--dialog-border-light);
-            background-image: repeating-linear-gradient(45deg, #dfdfdf 25%, transparent 25%, transparent 75%, #dfdfdf 75%, #dfdfdf), repeating-linear-gradient(45deg, #dfdfdf 25%, #c0c0c0 25%, #c0c0c0 75%, #dfdfdf 75%, #dfdfdf);
-            background-position: 0 0, 2px 2px;
-            background-size: 4px 4px;
-            padding: 4px 10px;
-            font-weight: bold;
-            height: 25px;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            min-width: 150px;
-            cursor: pointer;
-        }
-
-        .task-window img {
-            width: 14px;
-            height: 14px;
-            margin-right: 5px;
-        }
-
-        .tray {
-            margin-left: auto;
-            border-top: 2px solid var(--dialog-border-dark);
-            border-left: 2px solid var(--dialog-border-dark);
-            border-right: 2px solid var(--dialog-border-light);
-            border-bottom: 2px solid var(--dialog-border-light);
-            padding: 2px 8px;
-            height: 25px;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-        }
-
-        .clock {
-            font-size: 11px;
-        }
-
-        /* --- Start Menu --- */
-        .start-menu {
-            position: absolute;
-            bottom: 35px;
-            left: 0;
-            width: 200px;
-            background: var(--dialog-bg);
-            border-top: 2px solid var(--dialog-border-light);
-            border-left: 2px solid var(--dialog-border-light);
-            border-right: 2px solid var(--dialog-border-darker);
-            border-bottom: 2px solid var(--dialog-border-darker);
-            box-shadow: inset -1px -1px var(--dialog-border-dark);
-            display: none; /* Hidden by default */
-            flex-direction: row;
-            z-index: 1000;
-        }
-
-        .start-menu.show {
-            display: flex;
-        }
-
-        .start-sidebar {
-            width: 30px;
-            background: linear-gradient(to top, #000080, #1084d0);
-            display: flex;
-            align-items: flex-end;
-            padding-bottom: 5px;
-        }
-
-        .start-sidebar-text {
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            transform: rotate(-90deg);
-            transform-origin: left bottom;
-            white-space: nowrap;
-            margin-left: 25px;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .start-items {
-            flex-grow: 1;
-            padding: 2px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .start-item {
-            padding: 8px 10px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .start-item:hover {
-            background-color: #000080;
-            color: white;
-        }
-
-        .start-item img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-        }
-
-        .start-divider {
-            height: 1px;
-            background-color: var(--dialog-border-dark);
-            border-bottom: 1px solid var(--dialog-border-light);
-            margin: 4px 2px;
-        }
-
-    </style>
+    <meta
+        name="description"
+        content="Deshan Samarathunga is a final-year IT student building bold websites, WordPress experiences, and custom business systems including ERP and POS solutions."
+    >
+    <title>Deshan Samarathunga | Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="page-shell">
+        <header class="site-header">
+            <a class="brand-mark" href="#top" aria-label="Go to top">DS</a>
 
-    <div class="desktop" id="desktop">
-        <!-- Desktop Icons -->
-        <div class="desktop-icon" onclick="selectIcon(this)">
-            <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="My Computer">
-            <span>My Computer</span>
-        </div>
-        <div class="desktop-icon" onclick="selectIcon(this)">
-            <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin">
-            <span>Recycle Bin</span>
-        </div>
-        <div class="desktop-icon" onclick="selectIcon(this)" ondblclick="openPortfolio()">
-            <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="My Documents">
-            <span>My Documents</span>
-        </div>
-        <div class="desktop-icon" onclick="selectIcon(this)">
-            <img src="https://win98icons.alexmeub.com/icons/png/msie1-2.png" alt="Internet Explorer">
-            <span>Internet</span>
-        </div>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-        <!-- The Main Portfolio Window -->
-        <div class="window" id="portfolioWindow">
-            <div class="title-bar" id="titleBar">
-                <div class="title-bar-text">
-                    <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" style="width: 12px; height: 12px; vertical-align: middle; margin-right: 4px;" alt="icon">
-                    C:\My Documents\Portfolio.exe
-                </div>
-                <div class="title-bar-controls">
-                    <button aria-label="Minimize" onclick="toggleWindow()">_</button>
-                    <button aria-label="Maximize">☐</button>
-                    <button aria-label="Close" onclick="closeWindow()">X</button>
-                </div>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="navDrawer"
+                aria-label="Open menu"
+            >
+                <span class="nav-toggle-text">Menu</span>
+                <span class="nav-toggle-box" aria-hidden="true">
+                    <span class="nav-toggle-line"></span>
+                    <span class="nav-toggle-line"></span>
+                    <span class="nav-toggle-line"></span>
+                </span>
+            </button>
+        </header>
+
+        <div class="nav-backdrop" aria-hidden="true"></div>
+
+        <aside class="nav-drawer" id="navDrawer" aria-label="Mobile navigation" aria-hidden="true">
+            <div class="nav-drawer-panel">
+                <p class="drawer-kicker">Move through the portfolio</p>
+                <nav class="drawer-nav" aria-label="Mobile primary">
+                    <a href="#services">Services</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <a class="button button-primary drawer-cta" href="mailto:your.email@example.com?subject=Project%20Inquiry">
+                    Start a Project
+                </a>
             </div>
-            
-            <div class="window-body">
-                <h1>Deshan Samarathunga</h1>
-                <h2>Full-Stack Developer | IT Undergraduate</h2>
-                
-                <div class="sunken-panel">
-                    <p>Hi, I'm Deshan. I'm currently finishing up my degree and actively building full-stack applications. I enjoy tackling UI/UX challenges, optimizing performance, and exploring everything from 3D web rendering to backend infrastructure.</p>
+        </aside>
+
+        <main id="top">
+            <section class="hero section-block" id="hero">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Final-Year University IT Student</p>
+                    <h1>
+                        I build playful, high-impact websites and custom software
+                        for real businesses.
+                    </h1>
+                    <p class="hero-text">
+                        I am Deshan Samarathunga, a developer focused on modern web
+                        development, WordPress websites, custom business sites,
+                        ERP systems, and POS solutions. I care about strong visuals,
+                        sharp usability, and systems that make daily work easier.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="mailto:your.email@example.com?subject=Project%20Inquiry">
+                            Email Me
+                        </a>
+                        <a class="button button-secondary" href="#projects">
+                            Explore Projects
+                        </a>
+                    </div>
+                    <div class="hero-badges" aria-label="Key strengths">
+                        <span>Web Development</span>
+                        <span>WordPress</span>
+                        <span>ERP Systems</span>
+                        <span>POS Systems</span>
+                    </div>
                 </div>
 
-                <h3>Technical Skills</h3>
-                <div>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">Three.js</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">Linux</span>
+                <aside class="hero-panel brutal-card reveal" aria-label="Quick profile">
+                    <div class="panel-sticker sticker-yellow">Available for freelance</div>
+                    <div class="hero-stat-grid" role="list">
+                        <article class="hero-stat" role="listitem">
+                            <span class="stat-label">Focus</span>
+                            <strong>Business-ready digital products</strong>
+                            <p>Websites and internal tools with clear structure and strong user flow.</p>
+                        </article>
+                        <article class="hero-stat" role="listitem">
+                            <span class="stat-label">Works With</span>
+                            <strong>Startups, stores, and growing teams</strong>
+                            <p>Projects that need a stronger online presence or better internal operations.</p>
+                        </article>
+                        <article class="hero-stat" role="listitem">
+                            <span class="stat-label">Builds</span>
+                            <strong>Landing pages, dashboards, and operations tools</strong>
+                            <p>From portfolio-style presentation sites to systems supporting real workflows.</p>
+                        </article>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="section-block" id="services">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Services</p>
+                    <h2>What I can build for clients and teams</h2>
+                    <p>
+                        I work across customer-facing websites and business systems,
+                        shaping products that are expressive, practical, and ready to
+                        support real usage on every screen size.
+                    </p>
                 </div>
 
-                <h3>Featured Projects</h3>
-                <ul>
-                    <li><strong>Kithul Flow:</strong> A comprehensive ERP system built from the ground up, focusing on clean UI/UX and robust feature implementation.</li>
-                    <li><strong>Smart IoT-Enabled Monitoring System:</strong> A research-driven IoT project focused on optimizing environments for oyster mushroom cultivation.</li>
-                    <li><strong>Interactive 3D Portfolio:</strong> Experimental web portfolio utilizing Three.js for seamless, animated user experiences.</li>
-                </ul>
+                <div class="card-grid services-grid">
+                    <article class="brutal-card service-card reveal">
+                        <span class="service-index">01</span>
+                        <h3>Web Development</h3>
+                        <p>
+                            Responsive websites that introduce your business clearly,
+                            feel modern to use, and guide visitors toward action.
+                        </p>
+                    </article>
+                    <article class="brutal-card service-card reveal">
+                        <span class="service-index">02</span>
+                        <h3>WordPress Websites</h3>
+                        <p>
+                            Easy-to-manage WordPress builds for businesses that want
+                            flexible content updates without losing polish.
+                        </p>
+                    </article>
+                    <article class="brutal-card service-card reveal">
+                        <span class="service-index">03</span>
+                        <h3>Custom Business Sites</h3>
+                        <p>
+                            Tailored websites for service brands, stores, and teams
+                            that need something stronger than a generic template.
+                        </p>
+                    </article>
+                    <article class="brutal-card service-card reveal">
+                        <span class="service-index">04</span>
+                        <h3>ERP Systems</h3>
+                        <p>
+                            Operational platforms that connect workflows, reduce manual
+                            work, and make business data easier to track and act on.
+                        </p>
+                    </article>
+                    <article class="brutal-card service-card reveal">
+                        <span class="service-index">05</span>
+                        <h3>POS Systems</h3>
+                        <p>
+                            Point-of-sale tools for retail and service environments that
+                            need smooth billing, stock visibility, and usable interfaces.
+                        </p>
+                    </article>
+                </div>
+            </section>
 
-                <h3>Links & Profiles</h3>
-                <ul>
-                    <li><strong>GitHub:</strong> <a href="#">github.com/Deshan-Samarathunga</a></li>
-                    <li><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/deshan</a></li>
-                    <li><strong>Email:</strong> <a href="mailto:contact@example.com">contact@example.com</a></li>
-                </ul>
-            </div>
-        </div>
+            <section class="section-block" id="projects">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Featured Projects</p>
+                    <h2>Tap into the projects to see how I think and build</h2>
+                    <p>
+                        Each card opens into a compact case-study view, keeping the section
+                        easy to scan while still giving people more context when they want it.
+                    </p>
+                </div>
+
+                <div class="card-grid project-grid">
+                    <details class="brutal-card project-card reveal" open>
+                        <summary>
+                            <div class="project-topline">
+                                <span class="project-tag">ERP</span>
+                                <span class="project-role">Full-stack developer</span>
+                            </div>
+                            <h3>Kithul Flow</h3>
+                            <p class="project-summary">
+                                An ERP-focused platform designed to make operational workflows
+                                clearer, faster, and easier to manage.
+                            </p>
+                            <span class="project-toggle-label">
+                                <span>Open case study</span>
+                                <span class="project-toggle-icon" aria-hidden="true">+</span>
+                            </span>
+                        </summary>
+                        <div class="project-details">
+                            <p>
+                                This project focused on building an operations-friendly system
+                                with cleaner interfaces and stronger usability for complex daily tasks.
+                                The aim was to make business workflows feel practical instead of heavy.
+                            </p>
+                            <ul class="project-meta" aria-label="Kithul Flow details">
+                                <li>Value: Streamlines operational management</li>
+                                <li>Focus: UI clarity, workflow design, feature implementation</li>
+                                <li>Stack: Modern web application architecture</li>
+                            </ul>
+                            <div class="project-links">
+                                <span class="inline-note">Demo and repo available on request</span>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="brutal-card project-card reveal">
+                        <summary>
+                            <div class="project-topline">
+                                <span class="project-tag project-tag-alt">IoT Research</span>
+                                <span class="project-role">System designer</span>
+                            </div>
+                            <h3>Smart IoT Monitoring System</h3>
+                            <p class="project-summary">
+                                A research-driven monitoring solution built to improve cultivation
+                                conditions through connected sensors and live environmental insight.
+                            </p>
+                            <span class="project-toggle-label">
+                                <span>Open case study</span>
+                                <span class="project-toggle-icon" aria-hidden="true">+</span>
+                            </span>
+                        </summary>
+                        <div class="project-details">
+                            <p>
+                                The system explored how IoT hardware and monitoring logic could support
+                                better environmental control for oyster mushroom cultivation and provide
+                                clearer data for decision-making.
+                            </p>
+                            <ul class="project-meta" aria-label="Smart IoT Monitoring System details">
+                                <li>Value: Supports optimized cultivation decisions</li>
+                                <li>Focus: Data-driven monitoring and environmental control</li>
+                                <li>Stack: IoT hardware, monitoring logic, dashboard concepts</li>
+                            </ul>
+                            <div class="project-links">
+                                <span class="inline-note">Case study available on request</span>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="brutal-card project-card reveal">
+                        <summary>
+                            <div class="project-topline">
+                                <span class="project-tag project-tag-blue">Creative Web</span>
+                                <span class="project-role">Front-end developer</span>
+                            </div>
+                            <h3>Interactive 3D Portfolio</h3>
+                            <p class="project-summary">
+                                An experimental personal site exploring motion, 3D storytelling,
+                                and stronger visual identity on the web.
+                            </p>
+                            <span class="project-toggle-label">
+                                <span>Open case study</span>
+                                <span class="project-toggle-icon" aria-hidden="true">+</span>
+                            </span>
+                        </summary>
+                        <div class="project-details">
+                            <p>
+                                This project pushed into more immersive front-end ideas while staying focused
+                                on usability. It shows how visual storytelling can create a memorable digital
+                                identity without making the experience confusing.
+                            </p>
+                            <ul class="project-meta" aria-label="Interactive 3D Portfolio details">
+                                <li>Value: Demonstrates creative front-end thinking</li>
+                                <li>Focus: Smooth interactions and visual storytelling</li>
+                                <li>Stack: Three.js, JavaScript, responsive UI patterns</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer">
+                                    GitHub Profile
+                                </a>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="section-block" id="about">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">About Me</p>
+                    <h2>Building with strong visuals, useful systems, and clear intent</h2>
+                    <p>
+                        I am a final-year IT undergraduate who enjoys turning ideas into working
+                        products. My interests span front-end design, full-stack development, and
+                        software that solves real operational problems.
+                    </p>
+                </div>
+
+                <div class="about-layout">
+                    <article class="brutal-card about-card reveal">
+                        <h3>How I work</h3>
+                        <p>
+                            I like balancing product design with implementation detail. That means thinking
+                            about how a page looks, how it behaves, and how well it supports the people using it.
+                        </p>
+                        <p>
+                            Whether the project is a marketing website or an internal tool, I aim for a result
+                            that feels expressive, reliable, and easy to navigate on any device.
+                        </p>
+                    </article>
+
+                    <article class="brutal-card skills-card reveal">
+                        <h3>Core stack</h3>
+                        <div class="skill-groups">
+                            <div>
+                                <span class="skill-group-title">Front end</span>
+                                <div class="skill-list">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                    <span>React</span>
+                                    <span>Three.js</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="skill-group-title">Back end</span>
+                                <div class="skill-list">
+                                    <span>Node.js</span>
+                                    <span>Python</span>
+                                    <span>SQL</span>
+                                    <span>Linux</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="skill-group-title">Project focus</span>
+                                <div class="skill-list">
+                                    <span>UI/UX</span>
+                                    <span>WordPress</span>
+                                    <span>ERP workflows</span>
+                                    <span>POS tools</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section-block" id="contact">
+                <div class="section-heading reveal">
+                    <p class="eyebrow">Contact</p>
+                    <h2>Let&apos;s build something useful and memorable</h2>
+                    <p>
+                        I am open to freelance work, collaborations, and opportunities where
+                        a strong website or custom system can create real impact.
+                    </p>
+                </div>
+
+                <div class="contact-layout">
+                    <article class="brutal-card contact-card contact-card-primary reveal">
+                        <p class="contact-kicker">Primary CTA</p>
+                        <h3>Start with an email</h3>
+                        <p>
+                            Tell me what you want to build, what kind of business you run,
+                            and what outcome you need. I can help shape the next step.
+                        </p>
+                        <a class="button button-primary" href="mailto:your.email@example.com?subject=Freelance%20Project%20Inquiry">
+                            your.email@example.com
+                        </a>
+                        <p class="inline-note">
+                            Replace this placeholder email with your production address before launch.
+                        </p>
+                    </article>
+
+                    <article class="brutal-card contact-card reveal">
+                        <p class="contact-kicker">Profiles</p>
+                        <h3>Find me online</h3>
+                        <div class="contact-links">
+                            <a href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer">
+                                GitHub
+                            </a>
+                            <span class="placeholder-pill">Add your LinkedIn URL</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer reveal">
+            <p>Deshan Samarathunga <span id="year"></span></p>
+        </footer>
     </div>
 
-    <!-- Start Menu -->
-    <div class="start-menu" id="startMenu">
-        <div class="start-sidebar">
-            <div class="start-sidebar-text">Windows 98</div>
-        </div>
-        <div class="start-items">
-            <div class="start-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/windows_update_large-0.png" alt="Update">
-                <span>Windows Update</span>
-            </div>
-            <div class="start-divider"></div>
-            <div class="start-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/settings_gear-0.png" alt="Settings">
-                <span>Settings</span>
-            </div>
-            <div class="start-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/search_file-2.png" alt="Find">
-                <span>Find</span>
-            </div>
-            <div class="start-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/help_book_big-0.png" alt="Help">
-                <span>Help</span>
-            </div>
-            <div class="start-item">
-                <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="Run">
-                <span>Run...</span>
-            </div>
-            <div class="start-divider"></div>
-            <div class="start-item" onclick="toggleStartMenu()">
-                <img src="https://win98icons.alexmeub.com/icons/png/shut_down_normal-2.png" alt="Shut Down">
-                <span>Shut Down...</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Taskbar -->
-    <div class="taskbar">
-        <button class="start-btn" id="startBtn" onclick="toggleStartMenu()">
-            <img src="https://win98icons.alexmeub.com/icons/png/windows_slanted-1.png" class="windows-logo" alt="Windows Logo">
-            Start
-        </button>
-        <div class="taskbar-divider"></div>
-        <div class="task-window" id="taskbarWindow" onclick="toggleWindow()">
-            <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" alt="icon">
-            Portfolio.exe
-        </div>
-        
-        <div class="tray">
-            <div class="clock" id="clock">12:00 PM</div>
-        </div>
-    </div>
-
-    <script>
-        // --- Clock Logic ---
-        function updateClock() {
-            const now = new Date();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            const strTime = hours + ':' + minutes + ' ' + ampm;
-            document.getElementById('clock').textContent = strTime;
-        }
-        setInterval(updateClock, 1000);
-        updateClock(); // initial call
-
-        // --- Start Menu Logic ---
-        function toggleStartMenu() {
-            const menu = document.getElementById('startMenu');
-            const btn = document.getElementById('startBtn');
-            menu.classList.toggle('show');
-            btn.classList.toggle('active');
-        }
-
-        // Close start menu if clicked outside
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('startMenu');
-            const btn = document.getElementById('startBtn');
-            if (!menu.contains(event.target) && !btn.contains(event.target)) {
-                menu.classList.remove('show');
-                btn.classList.remove('active');
-            }
-        });
-
-        // --- Desktop Icons Logic ---
-        function selectIcon(element) {
-            // Deselect all
-            const icons = document.querySelectorAll('.desktop-icon');
-            icons.forEach(icon => icon.classList.remove('selected'));
-            // Select clicked
-            element.classList.add('selected');
-        }
-
-        document.getElementById('desktop').addEventListener('click', function(e) {
-            if (e.target === this) {
-                const icons = document.querySelectorAll('.desktop-icon');
-                icons.forEach(icon => icon.classList.remove('selected'));
-            }
-        });
-
-        // --- Window Dragging Logic ---
-        const windowEl = document.getElementById('portfolioWindow');
-        const titleBar = document.getElementById('titleBar');
-        let isDragging = false;
-        let offsetX, offsetY;
-
-        titleBar.addEventListener('mousedown', (e) => {
-            // Prevent dragging if clicking a button
-            if (e.target.tagName.toLowerCase() === 'button') return;
-            
-            isDragging = true;
-            offsetX = e.clientX - windowEl.getBoundingClientRect().left;
-            offsetY = e.clientY - windowEl.getBoundingClientRect().top;
-            
-            // Bring to front
-            windowEl.style.zIndex = 10;
-            titleBar.classList.remove('inactive');
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            
-            // Calculate new position
-            let newX = e.clientX - offsetX;
-            let newY = e.clientY - offsetY;
-            
-            // Keep window within boundaries (rough estimate)
-            newY = Math.max(0, newY); // Don't go above top
-            
-            windowEl.style.left = `${newX}px`;
-            windowEl.style.top = `${newY}px`;
-        });
-
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-        });
-
-        // --- Window Minimize/Close Logic ---
-        function closeWindow() {
-            windowEl.style.display = 'none';
-            document.getElementById('taskbarWindow').style.display = 'none';
-        }
-
-        function toggleWindow() {
-            if (windowEl.style.display === 'none') {
-                windowEl.style.display = 'flex';
-                document.getElementById('taskbarWindow').style.boxShadow = "inset -1px -1px var(--dialog-border-dark), inset 1px 1px #dfdfdf";
-                document.getElementById('taskbarWindow').style.borderTop = "2px solid var(--dialog-border-darker)";
-            } else {
-                windowEl.style.display = 'none';
-                document.getElementById('taskbarWindow').style.boxShadow = "none";
-                document.getElementById('taskbarWindow').style.borderTop = "2px solid var(--dialog-border-light)";
-            }
-        }
-
-        function openPortfolio() {
-             windowEl.style.display = 'flex';
-             document.getElementById('taskbarWindow').style.display = 'flex';
-        }
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
