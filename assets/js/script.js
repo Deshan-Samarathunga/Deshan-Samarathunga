@@ -4,6 +4,7 @@ const navToggle = document.querySelector(".nav-toggle");
 const navDrawer = document.getElementById("navDrawer");
 const navBackdrop = document.querySelector(".nav-backdrop");
 const yearEl = document.getElementById("year");
+const brandMark = document.querySelector(".brand-mark");
 const drawerLinks = [...document.querySelectorAll(".drawer-nav a")];
 const navLinks = [...document.querySelectorAll(".site-nav a, .drawer-nav a")];
 const revealTargets = [...document.querySelectorAll(".reveal")];
@@ -12,11 +13,18 @@ const customCursor = document.querySelector(".custom-cursor");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileNavQuery = window.matchMedia("(max-width: 899px)");
 const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+const cursorHoverSelector = "a, button, summary, input, select, textarea, [role='button'], .nav-backdrop";
 
 root.classList.add("js-enabled");
 
 if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
+}
+
+if (brandMark) {
+    brandMark.addEventListener("click", event => {
+        event.preventDefault();
+    });
 }
 
 const positionCursor = (x, y) => {
@@ -35,7 +43,15 @@ const hideCustomCursor = () => {
         return;
     }
 
-    customCursor.classList.remove("is-visible", "is-pressed");
+    customCursor.classList.remove("is-visible", "is-hovering", "is-pressed");
+};
+
+const syncCursorHoverState = target => {
+    if (!customCursor) {
+        return;
+    }
+
+    customCursor.classList.toggle("is-hovering", Boolean(target && target.closest(cursorHoverSelector)));
 };
 
 const updateCursorAvailability = () => {
@@ -57,6 +73,15 @@ if (customCursor) {
 
         customCursor.classList.add("is-visible");
         positionCursor(event.clientX, event.clientY);
+        syncCursorHoverState(event.target);
+    });
+
+    document.addEventListener("pointerover", event => {
+        if (!canUseCustomCursor() || event.pointerType !== "mouse") {
+            return;
+        }
+
+        syncCursorHoverState(event.target);
     });
 
     document.addEventListener("pointerdown", event => {
@@ -64,6 +89,7 @@ if (customCursor) {
             return;
         }
 
+        syncCursorHoverState(event.target);
         customCursor.classList.add("is-pressed");
     });
 

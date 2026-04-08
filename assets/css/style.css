@@ -86,79 +86,99 @@ body.nav-open {
     will-change: transform, opacity;
     transform-origin: 0 0;
     transform:
-        translate3d(calc(var(--cursor-x) - 3px), calc(var(--cursor-y) - 3px), 0)
+        translate3d(var(--cursor-x), var(--cursor-y), 0)
         scale(var(--cursor-scale));
     transition:
         opacity 160ms ease,
         transform 70ms ease;
 }
 
-.custom-cursor-icon {
+.custom-cursor-arrow,
+.custom-cursor-hand {
     display: block;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
     overflow: visible;
     filter: drop-shadow(4px 4px 0 var(--ink));
+}
+
+.custom-cursor-arrow {
+    transform: translate(-3px, -3px);
+}
+
+.custom-cursor-hand {
+    display: none;
+    transform: translate(-15px, -2px);
 }
 
 .custom-cursor.is-visible {
     opacity: 1;
 }
 
+.custom-cursor.is-hovering .custom-cursor-arrow {
+    display: none;
+}
+
+.custom-cursor.is-hovering .custom-cursor-hand {
+    display: block;
+}
+
 .custom-cursor.is-pressed {
     --cursor-scale: 0.96;
 }
 
-.icon-sprite {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-}
-
-.icon {
-    display: block;
-    width: 18px;
-    height: 18px;
-    flex: 0 0 auto;
-    color: currentColor;
-}
-
-.icon-badge {
+.contact-links .social-button,
+.project-links .social-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.35rem;
-    height: 2.35rem;
-    flex: 0 0 auto;
-    border: var(--thin-border);
+    width: 100%;
+    min-height: 74px;
+    padding: 0 22px;
+    border: var(--border);
     background: var(--white);
-    box-shadow: 4px 4px 0 var(--ink);
+    box-shadow: var(--shadow-tight);
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.social-button__label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    padding: 0 20px;
+    line-height: 1;
+}
+
+.social-button--github {
+    background: var(--white);
     color: var(--ink);
 }
 
-.icon-badge-acid {
-    background: var(--acid);
-    color: var(--ink);
-}
-
-.icon-badge-blue {
+.social-button--linkedin {
     background: var(--blue);
-    color: var(--white);
+    color: var(--ink);
 }
 
-.icon-badge-tomato {
-    background: var(--tomato);
-    color: var(--white);
+.social-button--compact {
+    min-height: 62px;
 }
 
-.link-with-icon {
-    gap: 12px;
+.project-links .social-button--compact {
+    width: auto;
+    min-height: 62px;
+    padding: 0 18px;
 }
 
-.button-icon {
-    width: 2.15rem;
-    height: 2.15rem;
+.social-button--compact .social-button__label {
+    padding: 0;
+    font-size: 0.82rem;
 }
 
 img {
@@ -292,6 +312,29 @@ section[id] {
     color: var(--white);
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 var(--ink);
+}
+
+.contact-links .social-button:hover,
+.contact-links .social-button:focus-visible,
+.project-links .social-button:hover,
+.project-links .social-button:focus-visible {
+    color: var(--ink);
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+}
+
+.contact-links .social-button--github:hover,
+.contact-links .social-button--github:focus-visible,
+.project-links .social-button--github:hover,
+.project-links .social-button--github:focus-visible {
+    background: var(--white);
+}
+
+.contact-links .social-button--linkedin:hover,
+.contact-links .social-button--linkedin:focus-visible,
+.project-links .social-button--linkedin:hover,
+.project-links .social-button--linkedin:focus-visible {
+    background: var(--blue);
 }
 
 .nav-toggle {
@@ -498,8 +541,11 @@ main {
     align-items: flex-start;
 }
 
-.link-with-icon > span:last-child {
-    line-height: 1.2;
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    align-items: stretch;
 }
 
 .hero-badges span,
@@ -986,7 +1032,8 @@ main {
     }
 
     .custom-cursor,
-    .custom-cursor-icon {
+    .custom-cursor-arrow,
+    .custom-cursor-hand {
         transition-duration: 0.01ms !important;
     }
 }
