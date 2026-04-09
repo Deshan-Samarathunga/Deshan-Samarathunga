@@ -7,15 +7,62 @@ const yearEl = document.getElementById("year");
 const drawerLinks = [...document.querySelectorAll(".drawer-nav a")];
 const navLinks = [...document.querySelectorAll(".site-nav a, .drawer-nav a")];
 const revealTargets = [...document.querySelectorAll(".reveal")];
-const projectCards = [...document.querySelectorAll(".project-card")];
+const projectsShowcase = document.getElementById("projectsShowcase");
+const projectsViewport = document.getElementById("projectsViewport");
+const projectsTrack = document.getElementById("projectsTrack");
+const projectsPrevButton = document.querySelector("[data-projects-prev]");
+const projectsNextButton = document.querySelector("[data-projects-next]");
+const projectsDots = [...document.querySelectorAll("[data-projects-dot]")];
+const projectSlides = projectsTrack ? [...projectsTrack.querySelectorAll(".project-slide")] : [];
 const customCursor = document.querySelector(".custom-cursor");
 const faviconDynamicLink = document.getElementById("favicon-dynamic");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const mobileNavQuery = window.matchMedia("(max-width: 899px)");
 const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+const projectsCarouselQuery = window.matchMedia("(max-width: 767px)");
 const cursorHoverSelector = "a, button, summary, input, select, textarea, [role='button'], .nav-backdrop";
+const pagePreloader = document.getElementById("page-preloader");
+const preloaderStartedAt = typeof performance !== "undefined" ? performance.now() : Date.now();
+const minPreloaderMs = prefersReducedMotion.matches ? 80 : 420;
+let hasClosedPreloader = false;
+
+const closePreloader = () => {
+    if (hasClosedPreloader) {
+        return;
+    }
+
+    hasClosedPreloader = true;
+    body.classList.remove("is-loading");
+    body.classList.add("is-loaded");
+
+    if (!pagePreloader) {
+        return;
+    }
+
+    pagePreloader.setAttribute("aria-hidden", "true");
+
+    window.setTimeout(() => {
+        pagePreloader.remove();
+    }, prefersReducedMotion.matches ? 20 : 280);
+};
+
+const queuePreloaderClose = () => {
+    const now = typeof performance !== "undefined" ? performance.now() : Date.now();
+    const elapsed = now - preloaderStartedAt;
+    const waitMs = Math.max(0, minPreloaderMs - elapsed);
+
+    window.setTimeout(closePreloader, waitMs);
+};
 
 root.classList.add("js-enabled");
+
+if (document.readyState === "complete") {
+    queuePreloaderClose();
+} else {
+    window.addEventListener("load", queuePreloaderClose, { once: true });
+}
+
+window.setTimeout(queuePreloaderClose, 1600);
 
 if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
@@ -289,10 +336,173 @@ if (navToggle && navDrawer && navBackdrop) {
     }
 }
 
+let activeProjectIndex = 0;
+let projectsTouchStartX = 0;
+let projectsTouchEndX = 0;
+
+const canUseProjectsCarousel = () => Boolean(
+    projectsShowcase
+    && projectsViewport
+    && projectsTrack
+    && projectSlides.length > 0
+    && projectsCarouselQuery.matches
+);
+
+const syncProjectsDots = () => {
+    projectsDots.forEach((dot, index) => {
+        const isActive = index === activeProjectIndex;
+        dot.classList.toggle("is-active", isActive);
+
+        if (isActive) {
+            dot.setAttribute("aria-current", "true");
+        } else {
+            dot.removeAttribute("aria-current");
+        }
+    });
+};
+
+const syncProjectsCarousel = () => {
+    if (!projectsShowcase || !projectsTrack || projectSlides.length === 0) {
+        return;
+    }
+
+    const maxIndex = projectSlides.length - 1;
+    activeProjectIndex = Math.min(Math.max(activeProjectIndex, 0), maxIndex);
+
+    const carouselEnabled = canUseProjectsCarousel();
+    projectsShowcase.classList.toggle("is-carousel-active", carouselEnabled);
+
+    if (!carouselEnabled) {
+        projectsTrack.style.removeProperty("transform");
+        if (projectsPrevButton) {
+            projectsPrevButton.disabled = false;
+        }
+
+        if (projectsNextButton) {
+            projectsNextButton.disabled = false;
+        }
+
+        syncProjectsDots();
+        return;
+    }
+
+    const slideOffset = activeProjectIndex * projectsViewport.clientWidth;
+    projectsTrack.style.transform = `translate3d(${-slideOffset}px, 0, 0)`;
+
+    if (projectsPrevButton) {
+        projectsPrevButton.disabled = activeProjectIndex === 0;
+    }
+
+    if (projectsNextButton) {
+        projectsNextButton.disabled = activeProjectIndex === maxIndex;
+    }
+
+    syncProjectsDots();
+};
+
+const setActiveProject = nextIndex => {
+    if (projectSlides.length === 0) {
+        return;
+    }
+
+    const maxIndex = projectSlides.length - 1;
+    activeProjectIndex = Math.min(Math.max(nextIndex, 0), maxIndex);
+    syncProjectsCarousel();
+};
+
+if (projectsShowcase && projectsTrack && projectSlides.length > 0) {
+    if (projectsPrevButton) {
+        projectsPrevButton.addEventListener("click", () => {
+            setActiveProject(activeProjectIndex - 1);
+        });
+    }
+
+    if (projectsNextButton) {
+        projectsNextButton.addEventListener("click", () => {
+            setActiveProject(activeProjectIndex + 1);
+        });
+    }
+
+    projectsDots.forEach(dot => {
+        dot.addEventListener("click", () => {
+            const slideIndex = Number(dot.getAttribute("data-projects-dot"));
+            if (Number.isNaN(slideIndex)) {
+                return;
+            }
+
+            setActiveProject(slideIndex);
+        });
+    });
+
+    if (projectsViewport) {
+        projectsViewport.addEventListener(
+            "touchstart",
+            event => {
+                if (!canUseProjectsCarousel()) {
+                    return;
+                }
+
+                const touch = event.changedTouches[0];
+                projectsTouchStartX = touch.clientX;
+                projectsTouchEndX = touch.clientX;
+            },
+            { passive: true }
+        );
+
+        projectsViewport.addEventListener(
+            "touchmove",
+            event => {
+                if (!canUseProjectsCarousel()) {
+                    return;
+                }
+
+                const touch = event.changedTouches[0];
+                projectsTouchEndX = touch.clientX;
+            },
+            { passive: true }
+        );
+
+        projectsViewport.addEventListener(
+            "touchend",
+            () => {
+                if (!canUseProjectsCarousel()) {
+                    return;
+                }
+
+                const swipeDistance = projectsTouchEndX - projectsTouchStartX;
+                if (Math.abs(swipeDistance) < 48) {
+                    return;
+                }
+
+                if (swipeDistance < 0) {
+                    setActiveProject(activeProjectIndex + 1);
+                } else {
+                    setActiveProject(activeProjectIndex - 1);
+                }
+            },
+            { passive: true }
+        );
+    }
+
+    const handleProjectsViewportChange = () => {
+        syncProjectsCarousel();
+    };
+
+    if (typeof projectsCarouselQuery.addEventListener === "function") {
+        projectsCarouselQuery.addEventListener("change", handleProjectsViewportChange);
+    } else {
+        projectsCarouselQuery.addListener(handleProjectsViewportChange);
+    }
+
+    window.addEventListener("resize", syncProjectsCarousel);
+    syncProjectsCarousel();
+}
+
 const syncActiveNav = activeId => {
     navLinks.forEach(link => {
         const href = link.getAttribute("href");
-        const isMatch = href === `#${activeId}`;
+        const normalizedHref = href?.startsWith("/#") ? href.slice(1) : href;
+        const isMatch = normalizedHref === `#${activeId}`;
         link.classList.toggle("is-active", isMatch);
 
         if (isMatch) {
@@ -303,8 +513,15 @@ const syncActiveNav = activeId => {
     });
 };
 
-const observedSections = [...document.querySelectorAll("main section[id]")]
-    .filter(section => navLinks.some(link => link.getAttribute("href") === `#${section.id}`));
+const sectionCandidates = [document.getElementById("top"), ...document.querySelectorAll("main section[id]")]
+    .filter(Boolean);
+
+const observedSections = sectionCandidates
+    .filter(section => navLinks.some(link => {
+        const href = link.getAttribute("href");
+        const normalizedHref = href?.startsWith("/#") ? href.slice(1) : href;
+        return normalizedHref === `#${section.id}`;
+    }));
 
 const canAnimate = "IntersectionObserver" in window && !prefersReducedMotion.matches;
 
@@ -456,31 +673,3 @@ if (canAnimate) {
 updateActiveSection();
 window.addEventListener("scroll", requestActiveSectionUpdate, { passive: true });
 window.addEventListener("resize", requestActiveSectionUpdate);
-
-projectCards.forEach(card => {
-    card.addEventListener("toggle", () => {
-        if (!card.open) {
-            return;
-        }
-
-        projectCards.forEach(otherCard => {
-            if (otherCard !== card) {
-                otherCard.open = false;
-            }
-        });
-
-        const behavior = prefersReducedMotion.matches ? "auto" : "smooth";
-
-        if (window.innerWidth < 1024) {
-            window.setTimeout(() => {
-                card.scrollIntoView({
-                    behavior,
-                    block: "nearest"
-                });
-                requestActiveSectionUpdate();
-            }, 120);
-        } else {
-            requestActiveSectionUpdate();
-        }
-    });
-});

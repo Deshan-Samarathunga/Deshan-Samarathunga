@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
         name="description"
-        content="Deshan Samarathunga is a final-year IT student building bold websites, WordPress experiences, and custom business systems including ERP and POS solutions."
+        content="Deshan Samarathunga is a developer building websites and custom software."
     >
     <title>Deshan Samarathunga | Developer Portfolio</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1">
@@ -15,15 +15,18 @@
     <link id="favicon-dynamic" rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=1">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="is-loading">
+    <div id="page-preloader" class="page-preloader" role="status" aria-live="polite" aria-label="Loading portfolio">
+        <span class="preloader-line" aria-hidden="true"></span>
+    </div>
+
     <div class="page-shell">
         <header class="site-header">
             <a class="brand-mark" href="#top" aria-label="Go to top" data-cursor="link">DS</a>
 
             <nav class="site-nav" aria-label="Primary">
-                <a href="#services" data-cursor="link">Services</a>
+                <a href="#top" data-cursor="link">Home</a>
                 <a href="#projects" data-cursor="link">Projects</a>
-                <a href="#about" data-cursor="link">About</a>
                 <a href="#contact" data-cursor="link">Contact</a>
             </nav>
 
@@ -50,13 +53,12 @@
             <div class="nav-drawer-panel">
                 <p class="drawer-kicker">Move through the portfolio</p>
                 <nav class="drawer-nav" aria-label="Mobile primary">
-                    <a href="#services" data-cursor="link">Services</a>
+                    <a href="#top" data-cursor="link">Home</a>
                     <a href="#projects" data-cursor="link">Projects</a>
-                    <a href="#about" data-cursor="link">About</a>
                     <a href="#contact" data-cursor="link">Contact</a>
                 </nav>
                 <a class="button button-primary drawer-cta" href="mailto:your.email@example.com?subject=Project%20Inquiry" data-cursor="button">
-                    Start a Project
+                    Email Me
                 </a>
             </div>
         </aside>
@@ -64,313 +66,127 @@
         <main id="top">
             <section class="hero section-block" id="hero">
                 <div class="hero-copy reveal">
-                    <p class="eyebrow">Final-Year University IT Student</p>
-                    <h1>
-                        I build playful, high-impact websites and custom software
-                        for real businesses.
-                    </h1>
+                    <p class="eyebrow">I&apos;m Deshan</p>
+                    <h1>I build websites and software.</h1>
                     <p class="hero-text">
-                        I am Deshan Samarathunga, a developer focused on modern web
-                        development, WordPress websites, custom business sites,
-                        ERP systems, and POS solutions. I care about strong visuals,
-                        sharp usability, and systems that make daily work easier.
+                        Final-year IT student creating clean, fast, and useful digital products.
                     </p>
                     <div class="hero-actions">
+                        <a class="button button-secondary" href="#projects" data-cursor="button">
+                            View Projects
+                        </a>
                         <a class="button button-primary" href="mailto:your.email@example.com?subject=Project%20Inquiry" data-cursor="button">
                             Email Me
                         </a>
-                        <a class="button button-secondary" href="#projects" data-cursor="button">
-                            Explore Projects
-                        </a>
                     </div>
-                    <div class="hero-badges" aria-label="Key strengths">
-                        <span>Web Development</span>
-                        <span>WordPress</span>
-                        <span>ERP Systems</span>
-                        <span>POS Systems</span>
-                    </div>
-                </div>
-
-                <aside class="hero-panel brutal-card reveal" aria-label="Quick profile">
-                    <div class="panel-sticker sticker-yellow">Available for freelance</div>
-                    <div class="hero-stat-grid" role="list">
-                        <article class="hero-stat" role="listitem">
-                            <span class="stat-label">Focus</span>
-                            <strong>Business-ready digital products</strong>
-                            <p>Websites and internal tools with clear structure and strong user flow.</p>
-                        </article>
-                        <article class="hero-stat" role="listitem">
-                            <span class="stat-label">Works With</span>
-                            <strong>Startups, stores, and growing teams</strong>
-                            <p>Projects that need a stronger online presence or better internal operations.</p>
-                        </article>
-                        <article class="hero-stat" role="listitem">
-                            <span class="stat-label">Builds</span>
-                            <strong>Landing pages, dashboards, and operations tools</strong>
-                            <p>From portfolio-style presentation sites to systems supporting real workflows.</p>
-                        </article>
-                    </div>
-                </aside>
-            </section>
-
-            <section class="section-block" id="services">
-                <div class="section-heading reveal">
-                    <p class="eyebrow">Services</p>
-                    <h2>What I can build for clients and teams</h2>
-                    <p>
-                        I work across customer-facing websites and business systems,
-                        shaping products that are expressive, practical, and ready to
-                        support real usage on every screen size.
-                    </p>
-                </div>
-
-                <div class="card-grid services-grid">
-                    <article class="brutal-card service-card reveal" data-cursor="card">
-                        <span class="service-index">01</span>
-                        <h3>Web Development</h3>
-                        <p>
-                            Responsive websites that introduce your business clearly,
-                            feel modern to use, and guide visitors toward action.
-                        </p>
-                    </article>
-                    <article class="brutal-card service-card reveal" data-cursor="card">
-                        <span class="service-index">02</span>
-                        <h3>WordPress Websites</h3>
-                        <p>
-                            Easy-to-manage WordPress builds for businesses that want
-                            flexible content updates without losing polish.
-                        </p>
-                    </article>
-                    <article class="brutal-card service-card reveal" data-cursor="card">
-                        <span class="service-index">03</span>
-                        <h3>Custom Business Sites</h3>
-                        <p>
-                            Tailored websites for service brands, stores, and teams
-                            that need something stronger than a generic template.
-                        </p>
-                    </article>
-                    <article class="brutal-card service-card reveal" data-cursor="card">
-                        <span class="service-index">04</span>
-                        <h3>ERP Systems</h3>
-                        <p>
-                            Operational platforms that connect workflows, reduce manual
-                            work, and make business data easier to track and act on.
-                        </p>
-                    </article>
-                    <article class="brutal-card service-card reveal" data-cursor="card">
-                        <span class="service-index">05</span>
-                        <h3>POS Systems</h3>
-                        <p>
-                            Point-of-sale tools for retail and service environments that
-                            need smooth billing, stock visibility, and usable interfaces.
-                        </p>
-                    </article>
                 </div>
             </section>
 
             <section class="section-block" id="projects">
                 <div class="section-heading reveal">
-                    <p class="eyebrow">Featured Projects</p>
-                    <h2>Tap into the projects to see how I think and build</h2>
-                    <p>
-                        Each card opens into a compact case-study view, keeping the section
-                        easy to scan while still giving people more context when they want it.
-                    </p>
+                    <p class="eyebrow">Projects</p>
+                    <h2>Selected work</h2>
                 </div>
 
-                <div class="card-grid project-grid">
-                    <details class="brutal-card project-card reveal" open>
-                        <summary data-cursor="card">
-                            <div class="project-topline">
-                                <span class="project-tag">ERP</span>
-                                <span class="project-role">Full-stack developer</span>
-                            </div>
-                            <h3>Kithul Flow</h3>
-                            <p class="project-summary">
-                                An ERP-focused platform designed to make operational workflows
-                                clearer, faster, and easier to manage.
-                            </p>
-                            <span class="project-toggle-label">
-                                <span>Open case study</span>
-                                <span class="project-toggle-icon" aria-hidden="true">+</span>
-                            </span>
-                        </summary>
-                        <div class="project-details">
-                            <p>
-                                This project focused on building an operations-friendly system
-                                with cleaner interfaces and stronger usability for complex daily tasks.
-                                The aim was to make business workflows feel practical instead of heavy.
-                            </p>
-                            <ul class="project-meta" aria-label="Kithul Flow details">
-                                <li>Value: Streamlines operational management</li>
-                                <li>Focus: UI clarity, workflow design, feature implementation</li>
-                                <li>Stack: Modern web application architecture</li>
-                            </ul>
-                            <div class="project-links">
-                                <span class="inline-note">Demo and repo available on request</span>
-                            </div>
-                        </div>
-                    </details>
-
-                    <details class="brutal-card project-card reveal">
-                        <summary data-cursor="card">
-                            <div class="project-topline">
-                                <span class="project-tag project-tag-alt">IoT Research</span>
-                                <span class="project-role">System designer</span>
-                            </div>
-                            <h3>Smart IoT Monitoring System</h3>
-                            <p class="project-summary">
-                                A research-driven monitoring solution built to improve cultivation
-                                conditions through connected sensors and live environmental insight.
-                            </p>
-                            <span class="project-toggle-label">
-                                <span>Open case study</span>
-                                <span class="project-toggle-icon" aria-hidden="true">+</span>
-                            </span>
-                        </summary>
-                        <div class="project-details">
-                            <p>
-                                The system explored how IoT hardware and monitoring logic could support
-                                better environmental control for oyster mushroom cultivation and provide
-                                clearer data for decision-making.
-                            </p>
-                            <ul class="project-meta" aria-label="Smart IoT Monitoring System details">
-                                <li>Value: Supports optimized cultivation decisions</li>
-                                <li>Focus: Data-driven monitoring and environmental control</li>
-                                <li>Stack: IoT hardware, monitoring logic, dashboard concepts</li>
-                            </ul>
-                            <div class="project-links">
-                                <span class="inline-note">Case study available on request</span>
-                            </div>
-                        </div>
-                    </details>
-
-                    <details class="brutal-card project-card reveal">
-                        <summary data-cursor="card">
-                            <div class="project-topline">
-                                <span class="project-tag project-tag-blue">Creative Web</span>
-                                <span class="project-role">Front-end developer</span>
-                            </div>
-                            <h3>Interactive 3D Portfolio</h3>
-                            <p class="project-summary">
-                                An experimental personal site exploring motion, 3D storytelling,
-                                and stronger visual identity on the web.
-                            </p>
-                            <span class="project-toggle-label">
-                                <span>Open case study</span>
-                                <span class="project-toggle-icon" aria-hidden="true">+</span>
-                            </span>
-                        </summary>
-                        <div class="project-details">
-                            <p>
-                                This project pushed into more immersive front-end ideas while staying focused
-                                on usability. It shows how visual storytelling can create a memorable digital
-                                identity without making the experience confusing.
-                            </p>
-                            <ul class="project-meta" aria-label="Interactive 3D Portfolio details">
-                                <li>Value: Demonstrates creative front-end thinking</li>
-                                <li>Focus: Smooth interactions and visual storytelling</li>
-                                <li>Stack: Three.js, JavaScript, responsive UI patterns</li>
-                            </ul>
-                            <div class="project-links">
-                                <a class="social-button social-button--github social-button--compact" href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer" data-cursor="link">
-                                    <span class="social-button__label">GitHub Profile</span>
-                                </a>
-                            </div>
-                        </div>
-                    </details>
-                </div>
-            </section>
-
-            <section class="section-block" id="about">
-                <div class="section-heading reveal">
-                    <p class="eyebrow">About Me</p>
-                    <h2>Building with strong visuals, useful systems, and clear intent</h2>
-                    <p>
-                        I am a final-year IT undergraduate who enjoys turning ideas into working
-                        products. My interests span front-end design, full-stack development, and
-                        software that solves real operational problems.
-                    </p>
-                </div>
-
-                <div class="about-layout">
-                    <article class="brutal-card about-card reveal">
-                        <h3>How I work</h3>
-                        <p>
-                            I like balancing product design with implementation detail. That means thinking
-                            about how a page looks, how it behaves, and how well it supports the people using it.
-                        </p>
-                        <p>
-                            Whether the project is a marketing website or an internal tool, I aim for a result
-                            that feels expressive, reliable, and easy to navigate on any device.
-                        </p>
-                    </article>
-
-                    <article class="brutal-card skills-card reveal">
-                        <h3>Core stack</h3>
-                        <div class="skill-groups">
-                            <div>
-                                <span class="skill-group-title">Front end</span>
-                                <div class="skill-list">
-                                    <span>HTML</span>
-                                    <span>CSS</span>
-                                    <span>JavaScript</span>
-                                    <span>React</span>
-                                    <span>Three.js</span>
+                <div class="projects-showcase reveal" id="projectsShowcase">
+                    <div class="projects-viewport" id="projectsViewport">
+                        <div class="projects-track project-grid" id="projectsTrack">
+                            <article class="brutal-card project-card project-slide" data-cursor="card" data-project-index="0">
+                                <div class="project-media project-media--kithul" aria-hidden="true">
+                                    <span>KF</span>
                                 </div>
-                            </div>
-                            <div>
-                                <span class="skill-group-title">Back end</span>
-                                <div class="skill-list">
-                                    <span>Node.js</span>
-                                    <span>Python</span>
-                                    <span>SQL</span>
-                                    <span>Linux</span>
+                                <div class="project-topline">
+                                    <span class="project-tag">ERP</span>
+                                    <span class="project-role">Full-stack developer</span>
                                 </div>
-                            </div>
-                            <div>
-                                <span class="skill-group-title">Project focus</span>
-                                <div class="skill-list">
-                                    <span>UI/UX</span>
-                                    <span>WordPress</span>
-                                    <span>ERP workflows</span>
-                                    <span>POS tools</span>
+                                <h3>Kithul Flow</h3>
+                                <p class="project-summary">
+                                    ERP platform for clearer operational workflows and faster daily execution.
+                                </p>
+                                <div class="project-links">
+                                    <a class="project-page-link" href="/projects/kithul-flow.html" data-cursor="link">View project</a>
                                 </div>
-                            </div>
+                            </article>
+
+                            <article class="brutal-card project-card project-slide" data-cursor="card" data-project-index="1">
+                                <div class="project-media project-media--iot" aria-hidden="true">
+                                    <span>IOT</span>
+                                </div>
+                                <div class="project-topline">
+                                    <span class="project-tag project-tag-alt">IoT Research</span>
+                                    <span class="project-role">System designer</span>
+                                </div>
+                                <h3>Smart IoT Monitoring System</h3>
+                                <p class="project-summary">
+                                    Monitoring system using live environmental data to support cultivation decisions.
+                                </p>
+                                <div class="project-links">
+                                    <a class="project-page-link" href="/projects/smart-iot-monitoring.html" data-cursor="link">View project</a>
+                                </div>
+                            </article>
+
+                            <article class="brutal-card project-card project-slide" data-cursor="card" data-project-index="2">
+                                <div class="project-media project-media--creative" aria-hidden="true">
+                                    <span>3D</span>
+                                </div>
+                                <div class="project-topline">
+                                    <span class="project-tag project-tag-blue">Creative Web</span>
+                                    <span class="project-role">Front-end developer</span>
+                                </div>
+                                <h3>Interactive 3D Portfolio</h3>
+                                <p class="project-summary">
+                                    Creative portfolio exploring 3D storytelling, motion, and responsive UX.
+                                </p>
+                                <div class="project-links">
+                                    <a class="project-page-link" href="/projects/interactive-3d-portfolio.html" data-cursor="link">View project</a>
+                                </div>
+                            </article>
                         </div>
-                    </article>
+                    </div>
+
+                    <div class="projects-controls" aria-label="Project carousel controls">
+                        <button
+                            class="projects-arrow projects-arrow--prev"
+                            type="button"
+                            aria-label="Previous project"
+                            aria-controls="projectsTrack"
+                            data-projects-prev
+                            data-cursor="button"
+                        >
+                            Prev
+                        </button>
+                        <div class="projects-dots" aria-label="Project slide indicators">
+                            <button class="projects-dot is-active" type="button" aria-label="Go to Kithul Flow project" aria-controls="projectsTrack" aria-current="true" data-projects-dot="0" data-cursor="button"></button>
+                            <button class="projects-dot" type="button" aria-label="Go to Smart IoT Monitoring System project" aria-controls="projectsTrack" data-projects-dot="1" data-cursor="button"></button>
+                            <button class="projects-dot" type="button" aria-label="Go to Interactive 3D Portfolio project" aria-controls="projectsTrack" data-projects-dot="2" data-cursor="button"></button>
+                        </div>
+                        <button
+                            class="projects-arrow projects-arrow--next"
+                            type="button"
+                            aria-label="Next project"
+                            aria-controls="projectsTrack"
+                            data-projects-next
+                            data-cursor="button"
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
             </section>
 
             <section class="section-block" id="contact">
                 <div class="section-heading reveal">
                     <p class="eyebrow">Contact</p>
-                    <h2>Let&apos;s build something useful and memorable</h2>
-                    <p>
-                        I am open to freelance work, collaborations, and opportunities where
-                        a strong website or custom system can create real impact.
-                    </p>
+                    <h2>Let&apos;s work together</h2>
+                    <p>Open to freelance projects and collaborations.</p>
                 </div>
 
-                <div class="contact-layout">
+                <div class="contact-layout contact-layout-single">
                     <article class="brutal-card contact-card contact-card-primary reveal">
-                        <p class="contact-kicker">Primary CTA</p>
-                        <h3>Start with an email</h3>
-                        <p>
-                            Tell me what you want to build, what kind of business you run,
-                            and what outcome you need. I can help shape the next step.
-                        </p>
+                        <h3>Say hello</h3>
                         <a class="button button-primary" href="mailto:your.email@example.com?subject=Freelance%20Project%20Inquiry" data-cursor="button">
                             your.email@example.com
                         </a>
-                        <p class="inline-note">
-                            Replace this placeholder email with your production address before launch.
-                        </p>
-                    </article>
-
-                    <article class="brutal-card contact-card reveal">
-                        <p class="contact-kicker">Profiles</p>
-                        <h3>Find me online</h3>
                         <div class="contact-links">
                             <a class="social-button social-button--github" href="https://github.com/Deshan-Samarathunga" target="_blank" rel="noreferrer" data-cursor="link">
                                 <span class="social-button__label">GitHub</span>
